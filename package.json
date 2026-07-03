@@ -2,41 +2,75 @@
 
    
 
+
+
     "scripts": {
 
    
 
+
+
        
+
+
 
     "dev": "nodemon server.js"
 
    
 
+
+
     },
 
    
+
+
 
     "dependencies": {
 
    
 
+
+
        
+
+
+
+    "dotenv": "^17.4.2",
+
+   
+
+
+
+       
+
+
 
     "express": "^5.2.1",
 
    
 
+
+
        
+
+
 
     "mongoose": "^9.7.3",
 
    
 
+
+
        
+
+
 
     "nodemon": "^3.1.14"
 
    
+
+
 
     }
 
