@@ -34,4 +34,4 @@ async function registerUserController(req,res){
 
 
 
-module.exports = registerUserController;
+module.exports = {registerUserController};

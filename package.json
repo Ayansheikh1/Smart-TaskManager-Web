@@ -4,75 +4,149 @@
 
 
 
-    "scripts": {
+
+
+
+
+   "scripts": {
 
    
 
 
 
-       
 
 
 
-    "dev": "nodemon server.js"
 
-   
-
-
-
-    },
-
-   
+      
 
 
 
-    "dependencies": {
+
+
+
+
+   "dev": "nodemon server.js"
 
    
 
 
 
-       
 
 
 
-    "dotenv": "^17.4.2",
 
-   
-
-
-
-       
-
-
-
-    "express": "^5.2.1",
+   },
 
    
 
 
 
-       
 
 
 
-    "mongoose": "^9.7.3",
 
-   
-
-
-
-       
-
-
-
-    "nodemon": "^3.1.14"
+   "dependencies": {
 
    
 
 
 
-    }
+
+
+
+
+      
+
+
+
+
+
+
+
+   "bcryptjs": "^3.0.3",
+
+   
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+   "dotenv": "^17.4.2",
+
+   
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+   "express": "^5.2.1",
+
+   
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+   "mongoose": "^9.7.3",
+
+   
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+   "nodemon": "^3.1.14"
+
+   
+
+
+
+
+
+
+
+   }
 
 }
 
