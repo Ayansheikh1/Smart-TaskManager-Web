@@ -1,6 +1,7 @@
 const userModel = require('../models/user.model');
 
 
+
 /**
  * @name registerUserController
  * @description register a new user expects username ,email and password
@@ -26,4 +27,11 @@ async function registerUserController(req,res){
    }
 
    
+
+
 }
+
+
+
+
+module.exports = registerUserController;
