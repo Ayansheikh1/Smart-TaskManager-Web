@@ -19,12 +19,10 @@ const userSchema = new mongoose.Schema({
         type:String,
         min:8,
         required:true
-    },
-    createdAt:{
-        type:Date,
-        default:Date.now
     }
-   
+
+},{
+    timestamps:true
 });
 
 const userModel = mongoose.model('users',userSchema);
