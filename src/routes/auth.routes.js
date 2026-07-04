@@ -2,8 +2,12 @@ const express = require('express');
 
 const authRouter = express.Router();
 
-authRouter.post("/register",(req,res)=>{
-    res.send("register page")
-})
+/**
+ * @routes POST /api/auth/register
+ * @description Register a new user
+ * @access Public
+ */
+
+authRouter.post("/register",)
 
 module.exports = authRouter;
