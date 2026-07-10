@@ -114,6 +114,22 @@ async function loginUserController(req,res){
 }
 
 
+/**
+ * @name logoutUserController
+ * @description logout user 
+ * @access public
+ */
+async function logoutUserController(req,res) {
+    
+
+   res.clearCookie("token");
+
+   res.status(200).json({
+    message:"User logOut successfully "
+   })
+}
 
 
-module.exports = {registerUserController,loginUserController};
+
+
+module.exports = {registerUserController,loginUserController,logoutUserController};
