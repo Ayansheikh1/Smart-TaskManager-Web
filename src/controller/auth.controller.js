@@ -1,7 +1,9 @@
 const userModel = require('../models/user.model');
+const tokenBlaclistModel = require('../models/blackList.model')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const cookie = require('cookie-parser');
+const { default: mongoose } = require('mongoose');
 
 
 
@@ -120,8 +122,8 @@ async function loginUserController(req,res){
  * @access public
  */
 async function logoutUserController(req,res) {
-    
-
+   
+ 
    res.clearCookie("token");
 
    res.status(200).json({
