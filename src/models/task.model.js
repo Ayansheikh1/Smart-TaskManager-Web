@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { validate } = require('./user.model');
 
 const taskSchema = mongoose.Schema({
     title:{
@@ -32,14 +33,21 @@ const taskSchema = mongoose.Schema({
     },
     dueDate:{
         type:Date,
-        
+        validate:{
+            validator:function(value){
+                return !value || value >= new Date();
+            },
+            message:"dueDate cannot be in the past"
+        }
+
 
         
     },
     owner:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"users",
-        required:[true,"owner is necessary"]
+        required:[true,"owner is necessary"],
+        index: true
     }
 },{
     timestamps:true
