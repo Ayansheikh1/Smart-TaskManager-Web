@@ -64,11 +64,41 @@ async function getTaskscontroller(req,res){
 
 
    }catch(error){
-    return res.status(400).json({
+    return res.status(500).json({
         message:error.message
    })
 }
 }
 
 
-module.exports = {createTaskController,getTaskscontroller}
+/**
+ * @name getTaskByIdcontroller
+ * @description Get single task by Id
+ * @access private
+ */
+
+async function getTaskByIdcontroller(req,res){
+    try{
+    const owner = req.user.id;
+    const taskId =req.params.id;
+
+    const task = await taskModel.findOne({
+        _id:taskId,
+        owner
+    })
+    if (!task) {
+            return res.status(404).json({ message: "Task not found" });
+        }
+
+        return res.status(200).json({
+            message:"task fetched!",
+            task
+        })
+
+    }catch(error){
+         return res.status(500).json({ message: error.message });
+    }
+}
+
+
+module.exports = {createTaskController,getTaskscontroller,getTaskByIdcontroller}
