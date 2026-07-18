@@ -13,6 +13,13 @@ const authMiddleware = require('../middleware/auth.middleware')
  
 taskRouter.post('/create',authMiddleware.authUser,taskController.createTaskController);
 
+/**
+ * @routes POST /api/task/tasks
+ * @description read all tasks
+ * @access Private
+ */
+
+taskRouter.post('/tasks',authMiddleware.authUser,taskController.getTaskscontroller);
 
 
 module.exports = taskRouter;

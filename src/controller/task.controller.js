@@ -1,5 +1,5 @@
 const taskModel = require('../models/task.model');
-const userModel = require('../models/user.model');
+
 
 
 
@@ -42,5 +42,33 @@ async function createTaskController(req,res){
 }
 
 
+/**
+ * @name getTaskscontroller
+ * @description Get ALL Tasks
+ * @access private
+ */
+async function getTaskscontroller(req,res){
+   try{ 
+    const owner = req.user.id;
+    const tasks = await taskModel.find({
+        owner
+    })
+    
+    return res.status(200).json({
+        message:"Tasks fetch successfully",
+        totalTasks:tasks.length,
+        tasks:tasks
 
-module.exports = {createTaskController}
+    })
+
+
+
+   }catch(error){
+    return res.status(400).json({
+        message:error.message
+   })
+}
+}
+
+
+module.exports = {createTaskController,getTaskscontroller}
