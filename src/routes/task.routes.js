@@ -30,4 +30,12 @@ taskRouter.get('/tasks',authMiddleware.authUser,taskController.getTaskscontrolle
 taskRouter.get('/tasks/:id',authMiddleware.authUser,taskController.getTaskByIdcontroller);
 
 
+/**
+ * @routes PATCH /api/task/tasks/update/:taskId
+ * @description update specific task
+ * @access Private
+ */
+
+taskRouter.patch('/tasks/update/:id',authMiddleware.authUser.taskController.updateTaskController)
+
 module.exports = taskRouter;

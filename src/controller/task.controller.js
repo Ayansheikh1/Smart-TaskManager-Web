@@ -101,4 +101,50 @@ async function getTaskByIdcontroller(req,res){
 }
 
 
-module.exports = {createTaskController,getTaskscontroller,getTaskByIdcontroller}
+/**
+ * @name updateTaskController
+ * @description modify task
+ * @access private
+ */
+async function updateTaskController(req,res){
+    try{
+    const owner = req.user.id;
+    const taskId = req.params.id;
+    const{title,description,status,priority,dueDate} = req.body
+    const task = await taskModel.findOneAndUpdate({
+        owner,
+        _id:taskId
+    },
+{
+    title,
+    description,
+    status,
+    priority,
+    dueDate
+},{
+    returnDocument:"after"
+})
+    if(!task){
+        return res.status(404).json({
+            message:"task not found!"
+        })
+    }
+    return res.status(200).json({
+        message:"task modify successfully!",
+        task
+    })
+
+}catch(error){
+    return res.status(500).json({
+        message:error.message
+    })
+}
+
+}
+
+
+
+
+
+
+module.exports = {createTaskController,getTaskscontroller,getTaskByIdcontroller,updateTaskController}
