@@ -122,7 +122,8 @@ async function updateTaskController(req,res){
     priority,
     dueDate
 },{
-    returnDocument:"after"
+    new:true,
+    runValidators:true
 })
     if(!task){
         return res.status(404).json({
