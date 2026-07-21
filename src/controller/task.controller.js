@@ -110,7 +110,7 @@ async function updateTaskController(req,res){
     try{
     const owner = req.user.id;
     const taskId = req.params.id;
-    const{title,description,status,priority,dueDate} = req.body
+   const{title,description,status,priority,dueDate} = req.body;
     const task = await taskModel.findOneAndUpdate({
         owner,
         _id:taskId
