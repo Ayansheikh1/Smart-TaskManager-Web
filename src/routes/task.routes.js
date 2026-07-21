@@ -38,4 +38,13 @@ taskRouter.get('/tasks/:id',authMiddleware.authUser,taskController.getTaskByIdco
 
 taskRouter.patch('/tasks/update/:id',authMiddleware.authUser,taskController.updateTaskController)
 
+
+/**
+ * @routes DELETE /api/task/tasks/update/:taskId
+ * @description delete specific task
+ * @access Private
+ */
+
+taskRouter.delete('/tasks/delete/:id',authMiddleware.authUser,taskController.deleteTaskController)
+
 module.exports = taskRouter;

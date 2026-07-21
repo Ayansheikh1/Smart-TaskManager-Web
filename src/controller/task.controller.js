@@ -146,6 +146,41 @@ async function updateTaskController(req,res){
 
 
 
+/**
+ * @name deleteTaskController
+ * @description delete task
+ * @access private
+ */
+
+async function deleteTaskController(req,res){
+
+    try{
+    const owner = req.user.id;
+    const taskId = req.params.id;
+
+   const deletedTask =  await taskModel.findOneAndDelete({owner,_id:taskId});
+   if(!deletedTask){
+     return res.status(404).json({
+                message:"Task not found!",
+                
+            })
+   }
+
+   return res.status(200).json({
+    message:"Task deleted successfully ",
+
+   })
+
+}catch(error){
+    return res.status(500).json({
+                message:error.message,
+                
+            })
+}
 
 
-module.exports = {createTaskController,getTaskscontroller,getTaskByIdcontroller,updateTaskController}
+}
+
+
+
+module.exports = {createTaskController,getTaskscontroller,getTaskByIdcontroller,updateTaskController,deleteTaskController}
