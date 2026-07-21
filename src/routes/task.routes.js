@@ -36,6 +36,6 @@ taskRouter.get('/tasks/:id',authMiddleware.authUser,taskController.getTaskByIdco
  * @access Private
  */
 
-taskRouter.patch('/tasks/update/:id',authMiddleware.authUser.taskController.updateTaskController)
+taskRouter.patch('/tasks/update/:id',authMiddleware.authUser,taskController.updateTaskController)
 
 module.exports = taskRouter;
