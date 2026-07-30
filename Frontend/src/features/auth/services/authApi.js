@@ -12,3 +12,13 @@ export async function registerUser(userData){
 }//communicate between backend and return the response 
 
 
+
+
+export async function loginUser(userData){
+    const response = await api.post('/api/auth/login',userData)
+    return response.data
+}
+
+
+
+
