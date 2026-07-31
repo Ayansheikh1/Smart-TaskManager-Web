@@ -1,13 +1,13 @@
 import { useContext } from "react"
 import { AuthContext } from "../context/auth.context"
-import { loginUser, registerUser } from "../services/authApi";
+import { loginUser, logoutUser, registerUser } from "../services/authApi";
 
 
 export const useAuth = () =>{
     const context = useContext(AuthContext);
     const{user,setUser,loading,setLoading} = context;
 
-    const handleRegister = async({username,email,password}) =>{
+    const register = async({username,email,password}) =>{
         setLoading(true);
         try {
             const data = await registerUser({username,email,password});
@@ -21,7 +21,7 @@ export const useAuth = () =>{
 
 
 
-    const handleLogin = async({email,password}) =>{
+    const login = async({email,password}) =>{
         setLoading(true);
         try{
             const data = await loginUser({email,password});
@@ -34,7 +34,21 @@ export const useAuth = () =>{
         }
     }
 
-    
+
+    const logout = async () =>{
+        setLoading(true);
+        try{
+            const data = await logoutUser();
+            setUser(null);
+        }catch(error){
+            console.log(error)
+        }finally{
+            setLoading(false)
+
+        }
+    }
+
+
 }
 
 

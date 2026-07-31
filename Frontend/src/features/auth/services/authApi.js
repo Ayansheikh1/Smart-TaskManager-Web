@@ -20,5 +20,11 @@ export async function loginUser(userData){
 }
 
 
+export async function logoutUser(){
+    const response = await api.post('/api/auth/logout')
+    return response.data
+}
+
+
 
 
