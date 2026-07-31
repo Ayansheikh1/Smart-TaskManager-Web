@@ -49,6 +49,7 @@ export const useAuth = () =>{
     }
 
 
+    return (user,loading,register,login,logout)
 }
 
 
