@@ -8,5 +8,9 @@ export const router = createBrowserRouter([
         element:<Register/>
 
     },
-    
+     {
+        path:"/login",
+        element:<Register/>
+
+    },
 ])
