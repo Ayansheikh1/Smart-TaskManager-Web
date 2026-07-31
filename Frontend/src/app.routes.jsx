@@ -1,5 +1,6 @@
 import {createBrowserRouter} from 'react-router'
 import Register from '../src/features/auth/pages/Register'
+import Login from './features/auth/pages/Login'
 
 
 export const router = createBrowserRouter([
@@ -10,7 +11,7 @@ export const router = createBrowserRouter([
     },
      {
         path:"/login",
-        element:<Register/>
+        element:<Login/>
 
     },
 ])
