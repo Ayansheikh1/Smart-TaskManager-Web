@@ -49,7 +49,7 @@ export const useAuth = () =>{
     }
 
 
-    return (user,loading,register,login,logout)
+    return {user,loading,register,login,logout}
 }
 
 
