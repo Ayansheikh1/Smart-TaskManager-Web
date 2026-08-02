@@ -5,7 +5,7 @@ const Home = () => {
 
   const {logout,user} = useAuth();
   const handleLogout = async (e) =>{
-    e.preventDefault();
+    
     await logout();
 
   }
