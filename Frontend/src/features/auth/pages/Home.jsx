@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <main>
-        <h1>Welcome {user?.username}</h1>
+        <h1>Welcome {user?.username}!</h1>
         <button onClick={handleLogout} >Logout</button>
         
     </main>
