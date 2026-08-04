@@ -34,8 +34,12 @@ const Login = () => {
 
 
   return (
-    <main>
-        <div className="form-container">
+    <main  >
+        <div className="container" class="flex g " >
+    <div className="left" >
+            <div className="form-container">
+              <h1>Welcome back!</h1>  
+              <p>Simplify your work flow and boost your productivity with <span>Taskzee.</span>Get Started. </p> 
             <form onSubmit={handleSubmit} >
             <div className="input-groups">
                 <label htmlFor="email">Email</label>
@@ -50,11 +54,21 @@ const Login = () => {
                 type="password" name='password' id='password' placeholder='Enter password' />
             </div>
 
+
+            
+
             <button className='button'>Login</button>
 
             </form>
 
         </div>
+
+    </div>
+        <div className="right">
+                Right part
+        </div>
+        </div>
+    
     </main>
   )
 }
