@@ -35,7 +35,7 @@ const Login = () => {
 
   return (
     <main  >
-        <div className="container" class="flex g " >
+        <div className="container" class="flex justify-center  " >
     <div className="left" >
             <div className="form-container">
               <h1>Welcome back!</h1>  
@@ -57,7 +57,7 @@ const Login = () => {
 
 
 
-            
+
 
             <button className='button'>Login</button>
 
