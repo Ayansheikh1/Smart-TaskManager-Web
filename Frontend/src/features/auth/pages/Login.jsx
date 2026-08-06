@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAuth } from '../hooks/useAuth';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 const Login = () => {
 
@@ -35,23 +35,28 @@ const Login = () => {
 
   return (
     <main  >
-        <div className="container" class="flex justify-center  " >
+        <div className="container" class="flex justify-center items-center min-h-screen gap-4  " >
     <div className="left" >
-            <div className="form-container">
-              <h1>Welcome back!</h1>  
-              <p>Simplify your work flow and boost your productivity with <span>Taskzee.</span>Get Started. </p> 
-            <form onSubmit={handleSubmit} >
+            <div className="form-container" class="flex flex-col justify-center ">
+              <h1 class="text-3xl font-bold text-center ">Welcome back!</h1>  
+              <p class="text-gray-400 text-center text-sm " >Simplify your work flow and boost your productivity with <span class="text-black font-bold">Taskzee.</span>Get Started. </p> 
+            <form onSubmit={handleSubmit} 
+            class="mt-10 space-y-5" >
             <div className="input-groups">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email"></label>
                 <input 
                 onChange={(e)=>{setEmail(e.target.value)}}
-                type="email" name='email' id='email' placeholder='Enter email' />
+                type="email" name='email' id='email' placeholder='Email'
+                class="w-full rounded-full border border-neutral-400 px-6 py-4 text-neutral-700 outline-none focus:border-neutral-900"
+                />
             </div>
             <div className="input-groups">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password"></label>
                 <input 
                 onChange={(e)=>{setPassword(e.target.value)}}
-                type="password" name='password' id='password' placeholder='Enter password' />
+                type="password" name='password' id='password' placeholder='Password'
+                 class="w-full rounded-full border border-neutral-400 px-6 py-4 text-neutral-700 outline-none focus:border-neutral-900"
+                />
             </div>
 
 
@@ -59,10 +64,14 @@ const Login = () => {
 
 
 
-            <button className='button'>Login</button>
+            <button className='button' 
+             class="w-full rounded-full border bg-neutral-900 text-white font-medium hover:bg-neutral-800  py-4 mt-2 outline-none"
+            >Login</button>
+
+             <p class="text-center">Not a member? <Link to={'/register'} class="text-emerald-900" >Register</Link></p>
 
             </form>
-
+ 
         </div>
 
     </div>
