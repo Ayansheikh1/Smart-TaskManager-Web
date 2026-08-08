@@ -68,14 +68,14 @@ const Login = () => {
              class="w-full rounded-full border bg-neutral-900 text-white font-medium hover:bg-neutral-800  py-4 mt-2 outline-none"
             >Login</button>
 
-             <p class="text-center">Not a member? <Link to={'/register'} class="text-emerald-900" >Register</Link></p>
+             <p class="text-center">Not a member? <Link to={'/register'} class="text-[#A9CB98]" >Register</Link></p>
 
             </form>
  
         </div>
 
     </div>
-        <div className="right" class="relative w-full px-10 max-w-lg bg-[#a9cb9836] rounded-3xl">
+        <div className="right" class="relative w-full px-10 max-w-lg bg-[#a9cb981d] rounded-3xl">
                <svg viewBox="0 0 480 420" class="w-full h-auto select-none" xmlns="http://www.w3.org/2000/svg">
         {/* <!-- decorative swirl --> */}
         <path d="M120 180 C160 60, 320 60, 360 180" stroke="#9FC98A" stroke-width="4" fill="none" stroke-linecap="round"/>
