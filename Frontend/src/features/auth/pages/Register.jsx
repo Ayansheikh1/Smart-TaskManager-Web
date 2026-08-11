@@ -34,7 +34,7 @@ const Register = () => {
       <div className="flex flex-col-reverse lg:flex-row justify-center items-center min-h-screen gap-4 ">
 
         {/* Left side - form */}
-        <div className="left" class="flex flex-col justify-center">
+        <div className="left flex flex-col justify-center">
             <div className="form-container">
                      <h1 className="text-3xl font-bold text-center">Register</h1>
           <p className="text-gray-400 text-center text-sm">
