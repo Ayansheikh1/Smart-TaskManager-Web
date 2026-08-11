@@ -35,19 +35,19 @@ const Login = () => {
 
   return (
     <main  >
-        <div className="container" class="flex flex-col-reverse lg:flex-row justify-center items-center min-h-screen gap-4  " >
+        <div className="container flex flex-col-reverse lg:flex-row justify-center items-center min-h-screen gap-4  " >
     <div className="left" >
-            <div className="form-container" class="flex flex-col justify-center ">
-              <h1 class="text-3xl font-bold text-center ">Welcome back!</h1>  
-              <p class="text-gray-400 text-center text-sm " >Simplify your work flow and boost your productivity with <span class="text-black font-bold">Taskzee.</span>Get Started. </p> 
+            <div className="form-container flex flex-col justify-center ">
+              <h1 className="text-3xl font-bold text-center ">Welcome back!</h1>  
+              <p className="text-gray-400 text-center text-sm " >Simplify your work flow and boost your productivity with <span className="text-black font-bold">Taskzee.</span>Get Started. </p> 
             <form onSubmit={handleSubmit} 
-            class="mt-10 space-y-5" >
+            className="mt-10 space-y-5" >
             <div className="input-groups">
                 <label htmlFor="email"></label>
                 <input 
                 onChange={(e)=>{setEmail(e.target.value)}}
                 type="email" name='email' id='email' placeholder='Email'
-                class="w-full rounded-full border border-neutral-400 px-6 py-4 text-neutral-700 outline-none focus:border-neutral-900"
+                className="w-full rounded-full border border-neutral-400 px-6 py-4 text-neutral-700 outline-none focus:border-neutral-900"
                 />
             </div>
             <div className="input-groups">
@@ -55,7 +55,7 @@ const Login = () => {
                 <input 
                 onChange={(e)=>{setPassword(e.target.value)}}
                 type="password" name='password' id='password' placeholder='Password'
-                 class="w-full rounded-full border border-neutral-400 px-6 py-4 text-neutral-700 outline-none focus:border-neutral-900"
+                 className="w-full rounded-full border border-neutral-400 px-6 py-4 text-neutral-700 outline-none focus:border-neutral-900"
                 />
             </div>
 
@@ -67,11 +67,11 @@ const Login = () => {
 
 
 
-            <button className='button' 
-             class="w-full rounded-full border bg-neutral-900 text-white font-medium hover:bg-neutral-800  py-4 mt-2 outline-none"
+            <button 
+             className="w-full rounded-full border bg-neutral-900 text-white font-medium hover:bg-neutral-800  py-4 mt-2 outline-none"
             >Login</button>
 
-             <p class="text-center">Not a member? <Link to={'/register'} class="text-[#A9CB98]" >Register</Link></p>
+             <p className="text-center">Not a member? <Link to={'/register'} className="text-[#A9CB98]" >Register</Link></p>
 
             </form>
  
