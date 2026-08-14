@@ -15,7 +15,7 @@ export const useTask = ()=>{
         setLoading(true);
         try{
             const data = await createTask({title,description,status,priority,dueDate});
-            setTasks(data.task)
+            setTasks(data.tasks)
         } catch(error){
             console.log(error)
         }finally{
@@ -27,7 +27,7 @@ export const useTask = ()=>{
          setLoading(true);
         try{
             const data = await getAllTasks();
-            setTasks(data.task)
+            setTasks(data.tasks)
         } catch(error){
             console.log(error)
         }finally{
@@ -38,6 +38,6 @@ export const useTask = ()=>{
 
 
 
-    return {create,getTasks}
+    return {create,getTasks,tasks}
 
 }
