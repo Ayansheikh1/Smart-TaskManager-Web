@@ -14,8 +14,9 @@ const Home = () => {
 
   const handleGetTasks = async () => {
     await getTasks();
+    
   }
-
+console.log(tasks)
  
 
   return (
