@@ -16,7 +16,7 @@ const Home = () => {
     await getTasks();
     
   }
-console.log(tasks)
+
  
 
   return (
