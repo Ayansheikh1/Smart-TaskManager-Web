@@ -40,6 +40,12 @@ const TaskCard = ({ task }) => {
         </p>
       )}
 
+      <button
+    className="mt-3 w-full rounded-full border border-neutral-300 text-neutral-700 text-sm font-medium hover:bg-neutral-100 py-2.5 outline-none"
+>
+    View
+  </button>
+
     </div>
   )
 }

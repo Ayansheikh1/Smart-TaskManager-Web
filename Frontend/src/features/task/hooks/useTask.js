@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { TaskContext } from "../context/task.context";
-import { createTask, getAllTasks } from '../services/taskApi';
+import { createTask, getAllTasks, getTaskById } from '../services/taskApi';
+import { useParams } from "react-router";
 
 
 
@@ -9,6 +10,7 @@ import { createTask, getAllTasks } from '../services/taskApi';
 export const useTask = ()=>{
     const context = useContext(TaskContext);
     const{tasks,setTasks,loading,setLoading} = context;
+    const {taskId} = useParams()
 
 
     const create =async({title,description,status,priority,dueDate}) =>{
@@ -35,9 +37,21 @@ export const useTask = ()=>{
         }
     }
 
+    const viewTask = async (taskId) =>{
+        setLoading(true);
+        try{
+            const data = await getTaskById(taskId);
+            setTasks(data.tasks)
+        } catch(error){
+            console.log(error)
+        }finally{
+            setLoading(false)
+        }
+    }
 
 
 
-    return {create,getTasks,tasks}
+
+    return {create,getTasks,tasks,viewTask}
 
 }
