@@ -12,10 +12,10 @@ export async function getAllTasks(){
 }
 
 
-// export async function getTaskById(taskId){
-//    const response = await api.get(`/api/task/tasks/${taskId}`);
-//    return response.data
-// }
+export async function getTaskById(taskId){
+   const response = await api.get(`/api/task/tasks/${taskId}`);
+   return response.data
+}
 
 
 export async function updateTask(taskId,taskData){
