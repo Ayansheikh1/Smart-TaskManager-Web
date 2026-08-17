@@ -21,7 +21,7 @@ const TaskDetail = () => {
     const {task,viewTask,loading} = useTask();
     const navigate = useNavigate();
     const {taskId} = useParams()
-    console.log(taskId)
+  
 
  
     useEffect(() => {
@@ -90,8 +90,9 @@ const TaskDetail = () => {
 
           {/* Actions */}
           <div className="flex gap-3 mt-8">
+
             <Link
-              to={`/tasks/${task._id}/edit`}
+              
               className="flex items-center gap-2 rounded-full bg-neutral-900 text-white text-sm font-medium hover:bg-neutral-800 px-6 py-3 outline-none"
             >
               <Pencil size={15} />
