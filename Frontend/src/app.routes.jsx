@@ -3,6 +3,7 @@ import Register from '../src/features/auth/pages/Register'
 import Login from './features/auth/pages/Login'
 import Home from './features/task/pages/Home'
 import Protected from './features/auth/components/Protected'
+import TaskDetail from './features/task/pages/TaskDetail'
 
 
 export const router = createBrowserRouter([
@@ -19,5 +20,9 @@ export const router = createBrowserRouter([
     {
         path:"/",
         element: <Protected> <Home/> </Protected> 
+    },
+    {
+        path:"tasks/:taskId",
+        element: <Protected> <TaskDetail/> </Protected> 
     }
 ])
