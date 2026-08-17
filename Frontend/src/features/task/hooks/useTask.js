@@ -51,6 +51,6 @@ export const useTask = ()=>{
 
 
 
-    return {create,getTasks,tasks,task,viewTask}
+    return {create,getTasks,tasks,task,viewTask,setLoading,loading}
 
 }
