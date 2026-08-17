@@ -1,4 +1,7 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
+
+
 
 const statusStyles = {
   "Todo": "bg-neutral-100 text-neutral-700",
@@ -13,6 +16,16 @@ const priorityStyles = {
 }
 
 const TaskCard = ({ task }) => {
+
+   
+    const navigate = useNavigate()
+
+    const handleViewTask = () =>{
+        navigate(`/tasks/${task._id}`)
+    }
+
+
+    
 
   return (
     <div className="bg-white rounded-3xl shadow-sm border border-neutral-100 p-5 flex flex-col gap-3 hover:shadow-md transition-shadow">
@@ -41,6 +54,7 @@ const TaskCard = ({ task }) => {
       )}
 
       <button
+      onClick={handleViewTask}
     className="mt-3 w-full rounded-full border border-neutral-300 text-neutral-700 text-sm font-medium hover:bg-neutral-100 py-2.5 outline-none"
 >
     View
