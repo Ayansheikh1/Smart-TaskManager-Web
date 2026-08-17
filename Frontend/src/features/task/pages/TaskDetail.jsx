@@ -1,7 +1,7 @@
 import { useNavigate, useParams ,Link } from "react-router";
 import { useTask } from "../hooks/useTask"
 import { useEffect } from "react";
-import{ArrowLeft}
+import{ArrowLeft,Pencil,Calendar,Trash2} from 'lucide-react'
 
 
 const statusStyles = {
