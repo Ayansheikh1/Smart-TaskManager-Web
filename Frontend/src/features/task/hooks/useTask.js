@@ -8,7 +8,7 @@ import { createTask, getAllTasks,getTaskById } from '../services/taskApi';
 
 export const useTask = ()=>{
     const context = useContext(TaskContext);
-    const{tasks,setTasks,task,setTask,loading,setLoading} = context;
+    const{tasks,setTasks,task,setTask,loading,setLoading,setTotalTask,totalTask} = context;
     
 
 
@@ -16,7 +16,8 @@ export const useTask = ()=>{
         setLoading(true);
         try{
             const data = await createTask({title,description,status,priority,dueDate});
-            setTasks(data.tasks)
+            return data
+
         } catch(error){
             console.log(error)
         }finally{
@@ -29,6 +30,7 @@ export const useTask = ()=>{
         try{
             const data = await getAllTasks();
             setTasks(data.tasks)
+            setTotalTask(data.totalTasks)
         } catch(error){
             console.log(error)
         }finally{
@@ -51,6 +53,6 @@ export const useTask = ()=>{
 
 
 
-    return {create,getTasks,tasks,task,viewTask,setLoading,loading}
+    return {create,getTasks,tasks,task,viewTask,setLoading,loading,totalTask}
 
 }
