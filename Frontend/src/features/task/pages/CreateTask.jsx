@@ -1,8 +1,35 @@
-import React from 'react'
-import { Link } from 'react-router';
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router';
 import { ArrowLeft } from 'lucide-react'
+import { useTask } from "../hooks/useTask"
 
 const CreateTask = () => {
+
+  const[title,setTitle] =useState('');
+  const [description, setDescription] = useState("")
+  const [status, setStatus] = useState('Todo')
+  const [priority, setPriority] = useState('Low')
+  const [dueDate, setDueDate] = useState("");
+
+  const {create,loading} = useTask();
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e) =>{
+    e.preventDefault();
+    await create({title,description,status,priority,dueDate});
+    navigate('/');
+
+
+  }
+
+ if (loading) {
+    return (
+      <main className="min-h-screen flex items-center justify-center">
+        <p className="text-neutral-400">Creating task.......</p>
+      </main>
+    )
+  }
+
 
   return (
     <main className="min-h-screen bg-[#FAFBF9] px-4 sm:px-8 py-10">
@@ -22,13 +49,18 @@ const CreateTask = () => {
           <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900">Create Task</h1>
           <p className="text-neutral-400 text-sm mt-1">Fill in the details below to add a new task.</p>
 
-          <form className="mt-8 space-y-5">
+          <form className="mt-8 space-y-5" 
+          onSubmit={handleSubmit}
+          >
 
             <div>
-              <label htmlFor="title" className="block text-sm font-medium text-neutral-700 mb-1.5">
+              <label htmlFor="title" className="block text-sm font-medium text-neutral-700 mb-1.5" 
+              
+              >
                 Title
               </label>
               <input
+              onChange={(e)=>{setTitle(e.target.value)}}
                 type="text"
                 name="title"
                 id="title"
@@ -42,6 +74,7 @@ const CreateTask = () => {
                 Description
               </label>
               <textarea
+              onChange={(e)=>{setDescription(e.target.value)}}
                 name="description"
                 id="description"
                 rows={4}
@@ -56,6 +89,7 @@ const CreateTask = () => {
                   Status
                 </label>
                 <select
+                onChange={(e)=>{setStatus(e.target.value)}}
                   name="status"
                   id="status"
                   className="w-full rounded-full border border-neutral-400 px-6 py-4 text-neutral-700 outline-none focus:border-neutral-900 bg-white"
@@ -71,6 +105,7 @@ const CreateTask = () => {
                   Priority
                 </label>
                 <select
+                onChange={(e)=>{setPriority(e.target.value)}}
                   name="priority"
                   id="priority"
                   className="w-full rounded-full border border-neutral-400 px-6 py-4 text-neutral-700 outline-none focus:border-neutral-900 bg-white"
@@ -87,6 +122,7 @@ const CreateTask = () => {
                 Due Date
               </label>
               <input
+              onChange={(e) => setDueDate(e.target.value)}
                 type="date"
                 name="dueDate"
                 id="dueDate"
