@@ -4,6 +4,7 @@ import Login from './features/auth/pages/Login'
 import Home from './features/task/pages/Home'
 import Protected from './features/auth/components/Protected'
 import TaskDetail from './features/task/pages/TaskDetail'
+import CreateTask from './features/task/pages/CreateTask'
 
 
 export const router = createBrowserRouter([
@@ -24,5 +25,9 @@ export const router = createBrowserRouter([
     {
         path:"tasks/:taskId",
         element: <Protected> <TaskDetail/> </Protected> 
+    },
+    {
+        path:"tasks/create",
+        element: <Protected> <CreateTask/> </Protected> 
     }
 ])

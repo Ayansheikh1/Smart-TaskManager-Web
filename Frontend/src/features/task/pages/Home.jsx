@@ -2,11 +2,14 @@ import React from 'react'
 import { useAuth } from '../../auth/hooks/useAuth'
 import { useTask } from '../hooks/useTask';
 import TaskCard from '../components/TaskCArd';
+import { useNavigate } from 'react-router';
+
 
 const Home = () => {
 
   const { logout, user } = useAuth();
   const { tasks, getTasks } = useTask();
+  const navigate = useNavigate()
 
   const handleLogout = async (e) => {
     await logout();
@@ -15,6 +18,10 @@ const Home = () => {
   const handleGetTasks = async () => {
     await getTasks();
     
+  }
+
+  const handleCreateTask = () =>{
+    navigate('tasks/create');
   }
 
   
@@ -33,7 +40,14 @@ const Home = () => {
           <p className="text-neutral-400 text-sm mt-1">Here's what's on your plate today.</p>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-3 flex-wrap">
+
+           <button
+        onClick={handleCreateTask}
+        className="rounded-full border bg-[#A9CB98] text-neutral-900 font-medium hover:bg-[#9bbf88] px-6 py-3 outline-none"
+      >
+        + Create Task
+      </button>
           <button
             onClick={handleGetTasks}
             className="rounded-full border bg-neutral-900 text-white font-medium hover:bg-neutral-800 px-6 py-3 outline-none"
