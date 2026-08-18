@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useAuth } from '../../auth/hooks/useAuth'
 import { useTask } from '../hooks/useTask';
 import TaskCard from '../components/TaskCArd';
@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router';
 const Home = () => {
 
   const { logout, user } = useAuth();
-  const { tasks, getTasks } = useTask();
+  const { tasks, getTasks,totalTask } = useTask();
   const navigate = useNavigate()
 
   const handleLogout = async (e) => {
@@ -16,6 +16,7 @@ const Home = () => {
   }
 
   const handleGetTasks = async () => {
+    
     await getTasks();
     
   }
@@ -23,6 +24,12 @@ const Home = () => {
   const handleCreateTask = () =>{
     navigate('tasks/create');
   }
+
+
+  useEffect(() => {
+    getTasks();
+  }, [])
+  
 
   
 
@@ -67,10 +74,10 @@ const Home = () => {
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-xl font-semibold text-neutral-900">Tasks</h2>
-          <span className="text-sm text-neutral-400">{tasks.length} total</span>
+          <span className="text-sm text-neutral-400">{totalTask} total</span>
         </div>
 
-        {tasks.length === 0 ? (
+        {totalTask === 0 ? (
           <div className="rounded-3xl border border-dashed border-neutral-300 p-10 text-center text-neutral-400">
             No tasks yet. Click "Refresh Tasks" to load them.
           </div>
