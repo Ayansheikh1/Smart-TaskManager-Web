@@ -1,5 +1,6 @@
 
 import { useNavigate } from 'react-router';
+import { Pencil } from 'lucide-react';
 
 
 
@@ -17,15 +18,15 @@ const priorityStyles = {
 
 const TaskCard = ({ task }) => {
 
-   
-    const navigate = useNavigate()
 
-    const handleViewTask = () =>{
-        navigate(`/tasks/${task._id}`)
-    }
+  const navigate = useNavigate()
+
+  const handleViewTask = () => {
+    navigate(`/tasks/${task._id}`)
+  }
 
 
-    
+
 
   return (
     <div className="bg-white rounded-3xl shadow-sm border border-neutral-100 p-5 flex flex-col gap-3 hover:shadow-md transition-shadow">
@@ -53,12 +54,24 @@ const TaskCard = ({ task }) => {
         </p>
       )}
 
-      <button
-      onClick={handleViewTask}
-    className="mt-3 w-full rounded-full border border-neutral-300 text-neutral-700 text-sm font-medium hover:bg-neutral-100 py-2.5 outline-none"
->
-    View
-  </button>
+
+      <div className='flex gap-3 mt-8'>
+        <button
+          onClick={handleViewTask} 
+          className="flex items-center gap-2 rounded-full text-sm font-medium  px-6 py-3"
+        >
+          View
+        </button>
+
+        <button
+
+          className="flex items-center gap-2 rounded-full bg-neutral-900 text-white text-sm font-medium hover:bg-neutral-800 px-6 py-3 outline-none"
+        >
+          <Pencil size={15} />
+          Edit
+        </button>
+      </div>
+
 
     </div>
   )
