@@ -58,18 +58,12 @@ const TaskCard = ({ task }) => {
       <div className='flex gap-3 mt-8'>
         <button
           onClick={handleViewTask} 
-          className="flex items-center gap-2 rounded-full text-sm font-medium  px-6 py-3"
+          className="flex items-center gap-2 rounded-full text-sm font-medium  px-6 py-3 border"
         >
           View
         </button>
 
-        <button
-
-          className="flex items-center gap-2 rounded-full bg-neutral-900 text-white text-sm font-medium hover:bg-neutral-800 px-6 py-3 outline-none"
-        >
-          <Pencil size={15} />
-          Edit
-        </button>
+        
       </div>
 
 
