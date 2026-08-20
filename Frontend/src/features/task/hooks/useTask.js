@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { TaskContext } from "../context/task.context";
-import { createTask, getAllTasks,getTaskById } from '../services/taskApi';
+import { createTask, getAllTasks,getTaskById, updateTask } from '../services/taskApi';
 
 
 
@@ -20,6 +20,7 @@ export const useTask = ()=>{
 
         } catch(error){
             console.log(error)
+            throw error
         }finally{
             setLoading(false)
         }
@@ -33,6 +34,7 @@ export const useTask = ()=>{
             setTotalTask(data.totalTasks)
         } catch(error){
             console.log(error)
+            throw error
         }finally{
             setLoading(false)
         }
@@ -45,6 +47,21 @@ export const useTask = ()=>{
             setTask(data.task)
         } catch(error){
             console.log(error)
+            throw error
+        }finally{
+            setLoading(false)
+        }
+    }
+
+    const update = async(taskId,{title,description,status,priority,dueDate}) =>{
+        setLoading(true);
+        try{
+            const data = await updateTask(taskId,{title,description,status,priority,dueDate});
+            
+            return data
+        }catch(error){
+            console.log(error)
+            throw error
         }finally{
             setLoading(false)
         }
@@ -53,6 +70,6 @@ export const useTask = ()=>{
 
 
 
-    return {create,getTasks,tasks,task,viewTask,setLoading,loading,totalTask}
+    return {create,getTasks,tasks,task,viewTask,setLoading,loading,totalTask,update}
 
 }
