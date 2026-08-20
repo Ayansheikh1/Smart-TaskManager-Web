@@ -1,4 +1,4 @@
-import { useNavigate, useParams ,Link } from "react-router";
+import { useNavigate, useParams} from "react-router";
 import { useTask } from "../hooks/useTask"
 import { useEffect } from "react";
 import{ArrowLeft,Pencil,Calendar,Trash2} from 'lucide-react'
@@ -46,6 +46,10 @@ const TaskDetail = () => {
     )
   }
 
+  const handleEditTask=()=>{
+    navigate(`/tasks/${taskId}/edit`)
+  }
+
   return (
     <main className="min-h-screen bg-[#FAFBF9] px-4 sm:px-8 py-8">
       <div className="max-w-2xl mx-auto">
@@ -91,13 +95,14 @@ const TaskDetail = () => {
           {/* Actions */}
           <div className="flex gap-3 mt-8">
 
-            <Link
-              
+            <button
+              onClick={handleEditTask}
               className="flex items-center gap-2 rounded-full bg-neutral-900 text-white text-sm font-medium hover:bg-neutral-800 px-6 py-3 outline-none"
             >
               <Pencil size={15} />
               Edit
-            </Link>
+            </button>
+
             <button
               className="flex items-center gap-2 rounded-full border border-red-200 text-red-600 text-sm font-medium hover:bg-red-50 px-6 py-3 outline-none"
             >
