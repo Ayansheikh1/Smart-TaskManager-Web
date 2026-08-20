@@ -19,7 +19,7 @@ const EditTask = () => {
 
     useEffect(() => {
       viewTask(taskId)
-    }, [taskId])
+    }, [taskId]) //fetch task with help of task id and viewtask api
     
 
     useEffect(() => {
@@ -34,7 +34,7 @@ const EditTask = () => {
         }
         }
        
-    }, [task])
+    }, [task]) //fetch all the details carried by task and shown into form
     
 
       
