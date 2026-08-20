@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTask } from '../hooks/useTask'
-import { Link, useParams } from 'react-router';
+import { Link, useNavigate, useParams } from 'react-router';
 import { ArrowLeft } from 'lucide-react'
 import { useState ,useEffect} from 'react';
 
@@ -14,8 +14,9 @@ const EditTask = () => {
        const [dueDate, setDueDate] = useState("");
 
 
-    const {task,loading,viewTask} = useTask();
+    const {task,loading,viewTask,update} = useTask();
     const {taskId} = useParams();
+    const navigate = useNavigate()
 
     useEffect(() => {
       viewTask(taskId)
@@ -35,6 +36,19 @@ const EditTask = () => {
         }
        
     }, [task]) //fetch all the details carried by task and shown into form
+
+
+    const handleSubmit =async(e)=>{
+        e.preventDefault();
+        await update(taskId,{
+            title,
+            description,
+            status,
+            priority,
+            dueDate
+        })
+       navigate(`/tasks/${taskId}`);
+    }
     
 
       
@@ -70,7 +84,7 @@ const EditTask = () => {
           <p className="text-neutral-400 text-sm mt-1">Fill in the details below to update your task.</p>
 
           <form className="mt-8 space-y-5" 
-        //   onSubmit={handleSubmit}
+          onSubmit={handleSubmit}
           >
 
             <div>
