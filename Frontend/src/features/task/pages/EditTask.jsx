@@ -165,6 +165,7 @@ const EditTask = () => {
                 type="date"
                 name="dueDate"
                 id="dueDate"
+                min={new Date().toISOString().split("T")[0]}
                 className="w-full rounded-full border border-neutral-400 px-6 py-4 text-neutral-700 outline-none focus:border-neutral-900"
               />
             </div>
