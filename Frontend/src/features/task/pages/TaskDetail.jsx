@@ -18,7 +18,7 @@ const priorityStyles = {
 
 const TaskDetail = () => {
 
-    const {task,viewTask,loading,deleteT} = useTask();
+    const {task,viewTask,loading,removeTask} = useTask();
     const navigate = useNavigate();
     const {taskId} = useParams()
   
@@ -51,7 +51,7 @@ const TaskDetail = () => {
   }
 
   const handleDeleteTask = async() =>{
-      await deleteT(taskId);
+      await removeTask(taskId);
       navigate('/')
   }
 
