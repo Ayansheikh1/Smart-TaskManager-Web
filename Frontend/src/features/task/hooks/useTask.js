@@ -73,7 +73,7 @@ export const useTask = ()=>{
         }
     }
 
-    const deleteT = async(taskId)=>{
+    const removeTask = async(taskId)=>{
         setLoading(true);
         try{
                 await deleteTask(taskId)
@@ -88,6 +88,6 @@ export const useTask = ()=>{
 
 
 
-    return {create,getTasks,tasks,task,viewTask,setLoading,loading,totalTask,update,deleteT}
+    return {create,getTasks,tasks,task,viewTask,setLoading,loading,totalTask,update,removeTask}
 
 }
