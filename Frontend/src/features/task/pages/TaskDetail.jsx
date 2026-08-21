@@ -50,6 +50,10 @@ const TaskDetail = () => {
     navigate(`/tasks/${taskId}/edit`)
   }
 
+  const handleDeleteTask = () =>{
+    
+  }
+
   return (
     <main className="min-h-screen bg-[#FAFBF9] px-4 sm:px-8 py-8">
       <div className="max-w-2xl mx-auto">
@@ -104,6 +108,7 @@ const TaskDetail = () => {
             </button>
 
             <button
+            onClick={handleDeleteTask}
               className="flex items-center gap-2 rounded-full border border-red-200 text-red-600 text-sm font-medium hover:bg-red-50 px-6 py-3 outline-none"
             >
               <Trash2 size={15} />
