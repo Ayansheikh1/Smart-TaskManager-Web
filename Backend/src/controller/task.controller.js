@@ -111,6 +111,9 @@ async function updateTaskController(req,res){
     const owner = req.user.id;
     const taskId = req.params.id;
    const{title,description,status,priority,dueDate} = req.body;
+   console.log(req.body);
+
+
     const task = await taskModel.findOneAndUpdate({
         owner,
         _id:taskId
@@ -122,7 +125,7 @@ async function updateTaskController(req,res){
     priority,
     dueDate
 },{
-    new:true,
+    returnDocument: "after",
     runValidators:true
 })
     if(!task){
@@ -136,6 +139,7 @@ async function updateTaskController(req,res){
     })
 
 }catch(error){
+    console.log(error)
     return res.status(500).json({
         message:error.message
     })

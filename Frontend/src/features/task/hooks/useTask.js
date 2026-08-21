@@ -56,7 +56,13 @@ export const useTask = ()=>{
     const update = async(taskId,{title,description,status,priority,dueDate}) =>{
         setLoading(true);
         try{
-            const data = await updateTask(taskId,{title,description,status,priority,dueDate});
+            const data = await updateTask(taskId,{
+                title,
+                description,
+                status,
+                priority,
+                dueDate
+            });
             
             return data
         }catch(error){
