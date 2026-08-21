@@ -108,6 +108,7 @@ const TaskDetail = () => {
               Edit
             </button>
 
+
             <button
             onClick={handleDeleteTask}
               className="flex items-center gap-2 rounded-full border border-red-200 text-red-600 text-sm font-medium hover:bg-red-50 px-6 py-3 outline-none"
