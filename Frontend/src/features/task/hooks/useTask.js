@@ -24,6 +24,7 @@ export const useTask = ()=>{
             setError(
                 error.response?.data?.message || "Failed to create tasks"
             )
+             throw error
         }finally{
             setLoading(false)
         }
@@ -40,6 +41,7 @@ export const useTask = ()=>{
             setError(
                 error.response?.data?.message || "Failed to fetch tasks"
             )
+             throw error
         }finally{
             setLoading(false)
         }
@@ -55,6 +57,7 @@ export const useTask = ()=>{
             setError(
                 error.response?.data?.message || "Failed to fetch task"
             )
+             throw error
         }finally{
             setLoading(false)
         }
@@ -76,7 +79,9 @@ export const useTask = ()=>{
         }catch(error){
             setError(
                 error.response?.data?.message || "Failed to update task"
+        
             )
+            throw error
         }finally{
             setLoading(false)
         }
@@ -91,6 +96,7 @@ export const useTask = ()=>{
             setError(
                 error.response?.data?.message || "Failed to delete task"
             )
+             throw error
         }finally{
             setLoading(false)
         }
@@ -99,6 +105,6 @@ export const useTask = ()=>{
 
 
 
-    return {create,getTasks,tasks,task,viewTask,setLoading,loading,totalTask,update,removeTask,error}
+    return {create,getTasks,tasks,task,viewTask,loading,totalTask,update,removeTask,error}
 
 }
