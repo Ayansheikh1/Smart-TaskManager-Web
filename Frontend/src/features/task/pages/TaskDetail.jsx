@@ -2,6 +2,7 @@ import { useNavigate, useParams} from "react-router";
 import { useTask } from "../hooks/useTask"
 import { useEffect } from "react";
 import{ArrowLeft,Pencil,Calendar,Trash2} from 'lucide-react'
+import ErrorMessage from "../../../../shared/component/ErrorMessage";
 
 
 const statusStyles = {
@@ -18,42 +19,62 @@ const priorityStyles = {
 
 const TaskDetail = () => {
 
-    const {task,viewTask,loading,removeTask} = useTask();
+    const {task,viewTask,loading,removeTask,error} = useTask();
     const navigate = useNavigate();
     const {taskId} = useParams()
   
 
  
     useEffect(() => {
+
       viewTask(taskId)
     }, [taskId]);
     
   
-
-  if (loading) {
-    return (
-      <main className="min-h-screen flex items-center justify-center">
-        <p className="text-neutral-400">Loading task.......</p>
-      </main>
-    )
-  }
-
-  if (!task) {
-    return (
-      <main className="min-h-screen flex items-center justify-center">
-        <p className="text-neutral-400">Task not found.</p>
-      </main>
-    )
-  }
-
-  const handleEditTask=()=>{
+     const handleEditTask=()=>{
     navigate(`/tasks/${taskId}/edit`)
   }
 
-  const handleDeleteTask = async() =>{
-      await removeTask(taskId);
-      navigate('/')
+  const handleDeleteTask = async () => {
+  const confirmed = window.confirm(
+    "Are you sure you want to delete this task?"
+  );
+
+  if (!confirmed) return;
+
+  try {
+    await removeTask(taskId);
+    navigate("/");
+  } catch (error) {
+    // Error is handled in context
   }
+};
+
+ if (loading) {
+  return (
+    <main className="min-h-screen flex items-center justify-center">
+      <p className="text-neutral-400">Loading task...</p>
+    </main>
+  );
+}
+
+if (error) {
+  return (
+    <main className="min-h-screen flex items-center justify-center">
+      <ErrorMessage message={error} />
+    </main>
+  );
+}
+
+if (!task) {
+  return (
+    <main className="min-h-screen flex items-center justify-center">
+      <p className="text-neutral-400">Task not found.</p>
+    </main>
+  );
+}
+
+ 
 
   return (
     <main className="min-h-screen bg-[#FAFBF9] px-4 sm:px-8 py-8">
@@ -67,6 +88,8 @@ const TaskDetail = () => {
           <ArrowLeft size={16} />
           Back to tasks
         </button>
+
+      
 
         {/* Detail card */}
         <div className="bg-white rounded-3xl shadow-sm border border-neutral-100 p-6 sm:p-8">
