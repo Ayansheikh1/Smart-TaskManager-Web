@@ -146,7 +146,7 @@ const CreateTask = () => {
                 disabled={loading}
                 className="flex-1 rounded-full border bg-neutral-900 text-white font-medium hover:bg-neutral-800 py-4 outline-none"
               >
-                {loading?"creating....":"Create Task"}
+                {loading?"Creating....":"Create Task"}
               </button>
               <Link
                 to="/"
