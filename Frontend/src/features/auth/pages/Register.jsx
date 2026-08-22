@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
 import { useNavigate ,Link } from 'react-router';
+import ErrorMessage from '../../../../shared/component/ErrorMessage';
 
 const Register = () => {
 
@@ -10,12 +11,16 @@ const Register = () => {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
-    const {loading,register} = useAuth();
+    const {loading,register,error} = useAuth();
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
+        try{
         await register({username,email,password});
         navigate('/')
+        }catch(error){
+          //handle in context
+        }
     }
 
     if(loading){
@@ -41,6 +46,8 @@ const Register = () => {
             Simplify your work flow and boost your productivity with{' '}
             <span className="text-black font-bold">Taskzee.</span> Get Started.
           </p>
+
+          <ErrorMessage message={error} />
 
           <form onSubmit={handleSubmit} className="mt-10 space-y-5">
             <div>
