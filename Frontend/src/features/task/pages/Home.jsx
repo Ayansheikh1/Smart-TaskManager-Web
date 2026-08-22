@@ -9,7 +9,7 @@ import ErrorMessage from '../../../../shared/component/ErrorMessage';
 const Home = () => {
 
   const { logout, user } = useAuth();
-  const { tasks, getTasks,totalTask,error } = useTask();
+  const { tasks, getTasks,totalTask,error,loading } = useTask();
   const navigate = useNavigate()
 
   const handleLogout = async (e) => {
@@ -70,9 +70,10 @@ const Home = () => {
       </button>
           <button
             onClick={handleGetTasks}
+            disabled={loading}
             className="rounded-full border bg-neutral-900 text-white font-medium hover:bg-neutral-800 px-6 py-3 outline-none"
           >
-            Refresh Tasks
+           {loading?"Refreshing...": "Refresh Tasks"}
           </button>
           <button
             onClick={handleLogout}
@@ -94,7 +95,17 @@ const Home = () => {
           <span className="text-sm text-neutral-400">{totalTask} total</span>
         </div>
 
-        {totalTask === 0 ? (
+        
+
+        {
+        loading?(
+              <div className="rounded-3xl border border-neutral-200 p-10 text-center">
+      <p className="text-neutral-400">
+        Loading tasks...
+      </p>
+    </div>
+
+        ): totalTask === 0 ? (
           <div className="rounded-3xl border border-dashed border-neutral-300 p-10 text-center text-neutral-400">
             No tasks yet. Click "Refresh Tasks" to load them.
           </div>
