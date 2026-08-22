@@ -3,12 +3,13 @@ import { useAuth } from '../../auth/hooks/useAuth'
 import { useTask } from '../hooks/useTask';
 import TaskCard from '../components/TaskCArd';
 import { useNavigate } from 'react-router';
+import ErrorMessage from '../../../../shared/component/ErrorMessage';
 
 
 const Home = () => {
 
   const { logout, user } = useAuth();
-  const { tasks, getTasks,totalTask } = useTask();
+  const { tasks, getTasks,totalTask,error } = useTask();
   const navigate = useNavigate()
 
   const handleLogout = async (e) => {
@@ -16,10 +17,12 @@ const Home = () => {
   }
 
   const handleGetTasks = async () => {
-    
+  try {
     await getTasks();
-    
+  } catch (error) {
+    // Error is already handled in TaskContext
   }
+};
 
   const handleCreateTask = () =>{
     navigate('tasks/create');
@@ -27,8 +30,16 @@ const Home = () => {
 
 
   useEffect(() => {
-    getTasks();
-  }, [])
+  const loadTasks = async () => {
+    try {
+      await getTasks();
+    } catch (error) {
+      // Error is already stored in context
+    }
+  };
+
+  loadTasks();
+}, []);
   
 
   
@@ -46,6 +57,8 @@ const Home = () => {
           </h1>
           <p className="text-neutral-400 text-sm mt-1">Here's what's on your plate today.</p>
         </div>
+
+        
 
         <div className="flex gap-3 flex-wrap">
 
@@ -69,6 +82,10 @@ const Home = () => {
           </button>
         </div>
       </div>
+
+      <div className="max-w-5xl mx-auto mb-6">
+  <ErrorMessage message={error} />
+</div>
 
       {/* Tasks section */}
       <div className="max-w-5xl mx-auto">

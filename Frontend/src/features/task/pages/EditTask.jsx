@@ -3,6 +3,7 @@ import { useTask } from '../hooks/useTask'
 import { Link, useNavigate, useParams } from 'react-router';
 import { ArrowLeft } from 'lucide-react'
 import { useState ,useEffect} from 'react';
+import ErrorMessage from '../../../../shared/component/ErrorMessage';
 
 const EditTask = () => {
 
@@ -14,7 +15,7 @@ const EditTask = () => {
        const [dueDate, setDueDate] = useState("");
 
 
-    const {task,loading,viewTask,update} = useTask();
+    const {task,loading,viewTask,update,error} = useTask();
     const {taskId} = useParams();
     const navigate = useNavigate()
 
@@ -40,6 +41,7 @@ const EditTask = () => {
 
     const handleSubmit =async(e)=>{
         e.preventDefault();
+        try{
         await update(taskId,{
             title,
             description,
@@ -48,6 +50,9 @@ const EditTask = () => {
             dueDate
         })
        navigate(`/tasks/${taskId}`);
+    }catch(error){
+        //handle in context
+    }
     }
     
 
@@ -82,6 +87,8 @@ const EditTask = () => {
 
           <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900">Update Task</h1>
           <p className="text-neutral-400 text-sm mt-1">Fill in the details below to update your task.</p>
+
+          <ErrorMessage message={error} />
 
           <form className="mt-8 space-y-5" 
           onSubmit={handleSubmit}
