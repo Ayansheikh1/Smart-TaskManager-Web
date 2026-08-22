@@ -14,14 +14,16 @@ export const useTask = ()=>{
 
     const create =async({title,description,status,priority,dueDate}) =>{
         setLoading(true);
+        setError(null);
         
         try{
             const data = await createTask({title,description,status,priority,dueDate});
             return data
 
         } catch(error){
-            console.log(error)
-            throw error
+            setError(
+                error.response?.data?.message || "Failed to create tasks"
+            )
         }finally{
             setLoading(false)
         }
@@ -35,8 +37,9 @@ export const useTask = ()=>{
             setTasks(data.tasks)
             setTotalTask(data.totalTasks)
         } catch(error){
-            console.log(error)
-            throw error
+            setError(
+                error.response?.data?.message || "Failed to fetch tasks"
+            )
         }finally{
             setLoading(false)
         }
@@ -44,12 +47,14 @@ export const useTask = ()=>{
 
     const viewTask = async (taskId) =>{
         setLoading(true);
+        setError(null);
         try{
             const data = await getTaskById(taskId);
             setTask(data.task)
         } catch(error){
-            console.log(error)
-            throw error
+            setError(
+                error.response?.data?.message || "Failed to fetch task"
+            )
         }finally{
             setLoading(false)
         }
@@ -57,6 +62,7 @@ export const useTask = ()=>{
 
     const update = async(taskId,{title,description,status,priority,dueDate}) =>{
         setLoading(true);
+        setError(null);
         try{
             const data = await updateTask(taskId,{
                 title,
@@ -68,8 +74,9 @@ export const useTask = ()=>{
             
             return data
         }catch(error){
-            console.log(error)
-            throw error
+            setError(
+                error.response?.data?.message || "Failed to update task"
+            )
         }finally{
             setLoading(false)
         }
@@ -77,11 +84,13 @@ export const useTask = ()=>{
 
     const removeTask = async(taskId)=>{
         setLoading(true);
+        setError(null);
         try{
                 await deleteTask(taskId)
         }catch(error){
-            console.log(error)
-            throw error
+            setError(
+                error.response?.data?.message || "Failed to delete task"
+            )
         }finally{
             setLoading(false)
         }
@@ -90,6 +99,6 @@ export const useTask = ()=>{
 
 
 
-    return {create,getTasks,tasks,task,viewTask,setLoading,loading,totalTask,update,removeTask}
+    return {create,getTasks,tasks,task,viewTask,setLoading,loading,totalTask,update,removeTask,error}
 
 }
