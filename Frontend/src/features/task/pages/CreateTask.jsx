@@ -27,13 +27,7 @@ const CreateTask = () => {
 
   }
 
- if (loading) {
-    return (
-      <main className="min-h-screen flex items-center justify-center">
-        <p className="text-neutral-400">Creating task.......</p>
-      </main>
-    )
-  }
+
 
   
 
@@ -58,7 +52,14 @@ const CreateTask = () => {
 
           <ErrorMessage message={error} />
 
-          <form className="mt-8 space-y-5" 
+          {loading?(
+             <div className="rounded-3xl border border-neutral-200 p-10 text-center">
+      <p className="text-neutral-400">
+        Creating tasks...
+      </p>
+    </div>
+          ):(
+            <form className="mt-8 space-y-5" 
           onSubmit={handleSubmit}
           >
 
@@ -142,9 +143,10 @@ const CreateTask = () => {
             <div className="flex gap-3 pt-2">
               <button
                 type="submit"
+                disabled={loading}
                 className="flex-1 rounded-full border bg-neutral-900 text-white font-medium hover:bg-neutral-800 py-4 outline-none"
               >
-                Create Task
+                {loading?"creating....":"Create Task"}
               </button>
               <Link
                 to="/"
@@ -155,6 +157,9 @@ const CreateTask = () => {
             </div>
 
           </form>
+          )}
+
+          
         </div>
       </div>
     </main>
