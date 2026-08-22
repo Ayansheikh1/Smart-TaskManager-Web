@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router';
 import { ArrowLeft } from 'lucide-react'
 import { useTask } from "../hooks/useTask"
+import ErrorMessage from '../../../../shared/component/ErrorMessage';
 
 const CreateTask = () => {
 
@@ -11,13 +12,17 @@ const CreateTask = () => {
   const [priority, setPriority] = useState('Low')
   const [dueDate, setDueDate] = useState("");
 
-  const {create,loading} = useTask();
+  const {create,loading,error} = useTask();
   const navigate = useNavigate()
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
+    try{
     await create({title,description,status,priority,dueDate});
     navigate('/');
+    }catch(error){
+      // Error is already stored in context
+    }
 
 
   }
@@ -29,6 +34,8 @@ const CreateTask = () => {
       </main>
     )
   }
+
+  
 
 
   return (
@@ -48,6 +55,8 @@ const CreateTask = () => {
 
           <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900">Create Task</h1>
           <p className="text-neutral-400 text-sm mt-1">Fill in the details below to add a new task.</p>
+
+          <ErrorMessage message={error} />
 
           <form className="mt-8 space-y-5" 
           onSubmit={handleSubmit}
