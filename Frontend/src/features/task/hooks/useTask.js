@@ -8,12 +8,13 @@ import { createTask, deleteTask, getAllTasks,getTaskById, updateTask } from '../
 
 export const useTask = ()=>{
     const context = useContext(TaskContext);
-    const{tasks,setTasks,task,setTask,loading,setLoading,setTotalTask,totalTask} = context;
+    const{tasks,setTasks,task,setTask,loading,setLoading,setTotalTask,totalTask,error,setError} = context;
     
 
 
     const create =async({title,description,status,priority,dueDate}) =>{
         setLoading(true);
+        
         try{
             const data = await createTask({title,description,status,priority,dueDate});
             return data
@@ -28,6 +29,7 @@ export const useTask = ()=>{
 
     const getTasks = async ()=>{
          setLoading(true);
+         setError(null);
         try{
             const data = await getAllTasks();
             setTasks(data.tasks)
