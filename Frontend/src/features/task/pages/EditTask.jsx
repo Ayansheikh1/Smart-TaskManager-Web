@@ -59,13 +59,7 @@ const EditTask = () => {
       
 
 
-    if (loading) {
-    return (
-      <main className="min-h-screen flex items-center justify-center">
-        <p className="text-neutral-400">Updating task.......</p>
-      </main>
-    )
-  }
+    
     
 
 
@@ -180,14 +174,18 @@ const EditTask = () => {
             <div className="flex gap-3 pt-2">
               <button
                 type="submit"
+                 disabled={loading}
                 className="flex-1 rounded-full border bg-neutral-900 text-white font-medium hover:bg-neutral-800 py-4 outline-none"
               >
-                Update Task
+               {loading?"Updating...":"Update Task"}
               </button>
               <Link
                 to="/"
-                className="flex-1 flex items-center justify-center rounded-full border border-neutral-300 text-neutral-700 font-medium hover:bg-neutral-100 py-4 outline-none"
-              >
+                 className={`flex-1 flex items-center justify-center rounded-full border border-neutral-300 text-neutral-700 font-medium py-4 ${
+    loading
+      ? "pointer-events-none opacity-50"
+      : "hover:bg-neutral-100"
+  }`}>
                 Cancel
               </Link>
             </div>
