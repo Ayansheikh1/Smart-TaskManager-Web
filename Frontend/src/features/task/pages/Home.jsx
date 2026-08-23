@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuth } from '../../auth/hooks/useAuth'
 import { useTask } from '../hooks/useTask';
 import TaskCard from '../components/TaskCArd';
@@ -11,6 +11,7 @@ const Home = () => {
   const { logout, user } = useAuth();
   const { tasks, getTasks,totalTask,error,loading } = useTask();
   const navigate = useNavigate()
+  const[search,setSearch]=useState("");
 
   const handleLogout = async (e) => {
     await logout();
@@ -42,7 +43,9 @@ const Home = () => {
 }, []);
   
 
-  
+  const filteredTasks = tasks.filter((task) =>
+  task.title.toLowerCase().includes(search.toLowerCase())
+);
 
  
 
@@ -88,6 +91,16 @@ const Home = () => {
   <ErrorMessage message={error} />
 </div>
 
+<div className="max-w-5xl mx-auto mb-6">
+  <input
+    type="text"
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    placeholder="Search tasks..."
+    className="w-full rounded-full border border-neutral-300 px-6 py-3 text-neutral-700 outline-none focus:border-neutral-900"
+  />
+</div>
+
       {/* Tasks section */}
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center justify-between mb-5">
@@ -105,13 +118,13 @@ const Home = () => {
       </p>
     </div>
 
-        ): totalTask === 0 ? (
+        ): filteredTasks.length === 0 ? (
           <div className="rounded-3xl border border-dashed border-neutral-300 p-10 text-center text-neutral-400">
-            No tasks yet. Click "Refresh Tasks" to load them.
+            No matching tasks found.
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {tasks.map((task) => (
+            {filteredTasks.map((task) => (
               <TaskCard key={task._id} task={task}/>
             ))}
           </div>
