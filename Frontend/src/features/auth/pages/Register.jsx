@@ -23,16 +23,7 @@ const Register = () => {
         }
     }
 
-    if(loading){
-                return(
-                    
-        
-                    <h1>
-                        Loading.......
-                    </h1>
-                )
-            }
-
+   
 
   return (
     <main>
@@ -53,6 +44,7 @@ const Register = () => {
             <div>
               <label htmlFor="username" className="sr-only">Username</label>
               <input
+              value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 type="text"
                 name="username"
@@ -65,6 +57,7 @@ const Register = () => {
             <div>
               <label htmlFor="email" className="sr-only">Email</label>
               <input
+              value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 name="email"
@@ -77,6 +70,7 @@ const Register = () => {
             <div>
               <label htmlFor="password" className="sr-only">Password</label>
               <input
+              value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 name="password"
@@ -86,12 +80,13 @@ const Register = () => {
               />
             </div>
 
-            <button
-              type="submit"
-              className="w-full rounded-full border bg-neutral-900 text-white font-medium hover:bg-neutral-800 py-4 mt-2 outline-none"
-            >
-              Register
-            </button>
+           <button
+  type="submit"
+  disabled={loading}
+  className="w-full rounded-full border bg-neutral-900 text-white font-medium hover:bg-neutral-800 py-4 mt-2 outline-none disabled:opacity-60 disabled:cursor-not-allowed"
+>
+  {loading ? "Creating account..." : "Register"}
+</button>
 
             <p className="text-center">
               Already a member?{' '}
