@@ -81,7 +81,7 @@ if (loading && !task) {
           Back to tasks
         </button>
 
-      
+      <ErrorMessage message={error} />
 
         {/* Detail card */}
         <div className="bg-white rounded-3xl shadow-sm border border-neutral-100 p-6 sm:p-8">
