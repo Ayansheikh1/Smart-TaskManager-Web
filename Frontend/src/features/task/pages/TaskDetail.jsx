@@ -53,23 +53,15 @@ const TaskDetail = () => {
  if (loading) {
   return (
     <main className="min-h-screen flex items-center justify-center">
+      <p className="text-neutral-400">Please wait....</p>
+    </main>
+  );
+}
+
+if (loading && !task) {
+  return (
+    <main className="min-h-screen flex items-center justify-center">
       <p className="text-neutral-400">Loading task...</p>
-    </main>
-  );
-}
-
-if (error) {
-  return (
-    <main className="min-h-screen flex items-center justify-center">
-      <ErrorMessage message={error} />
-    </main>
-  );
-}
-
-if (!task) {
-  return (
-    <main className="min-h-screen flex items-center justify-center">
-      <p className="text-neutral-400">Task not found.</p>
     </main>
   );
 }
@@ -133,12 +125,13 @@ if (!task) {
 
 
             <button
-            onClick={handleDeleteTask}
-              className="flex items-center gap-2 rounded-full border border-red-200 text-red-600 text-sm font-medium hover:bg-red-50 px-6 py-3 outline-none"
-            >
-              <Trash2 size={15} />
-              Delete
-            </button>
+  onClick={handleDeleteTask}
+  disabled={loading}
+  className="flex items-center gap-2 rounded-full border border-red-200 text-red-600 text-sm font-medium hover:bg-red-50 px-6 py-3 outline-none disabled:opacity-50"
+>
+  <Trash2 size={15} />
+  {loading ? "Deleting..." : "Delete"}
+</button>
           </div>
 
         </div>
