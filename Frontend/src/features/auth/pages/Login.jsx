@@ -26,15 +26,7 @@ const Login = () => {
         }
 
 
-        if(loading){
-                return(
-                    
         
-                    <h1>
-                        Loading.......
-                    </h1>
-                )
-            }
 
 
 
@@ -51,7 +43,9 @@ const Login = () => {
             <div className="input-groups">
                 <label htmlFor="email"></label>
                 <input 
+                value={email}
                 onChange={(e)=>{setEmail(e.target.value)}}
+                
                 type="email" name='email' id='email' placeholder='Email'
                 className="w-full rounded-full border border-neutral-400 px-6 py-4 text-neutral-700 outline-none focus:border-neutral-900"
                 />
@@ -59,6 +53,7 @@ const Login = () => {
             <div className="input-groups">
                 <label htmlFor="password"></label>
                 <input 
+                value={password}
                 onChange={(e)=>{setPassword(e.target.value)}}
                 type="password" name='password' id='password' placeholder='Password'
                  className="w-full rounded-full border border-neutral-400 px-6 py-4 text-neutral-700 outline-none focus:border-neutral-900"
@@ -74,8 +69,11 @@ const Login = () => {
 
 
             <button 
+            disabled={loading}
              className="w-full rounded-full border bg-neutral-900 text-white font-medium hover:bg-neutral-800  py-4 mt-2 outline-none"
-            >Login</button>
+            >
+              {loading?"Logging in...":"Login"}
+              </button>
 
              <p className="text-center">Not a member? <Link to={'/register'} className="text-[#A9CB98]" >Register</Link></p>
 
