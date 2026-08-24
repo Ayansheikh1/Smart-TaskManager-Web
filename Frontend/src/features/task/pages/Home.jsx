@@ -54,13 +54,16 @@ const Home = () => {
   const filteredTasks = tasks.filter((task) => {
     const matchesTitle = task.title.toLowerCase().includes(search.toLowerCase());
 
-    const matchesStatus = statusFilter == 'All' || task.status == statusFilter
+    const matchesStatus = statusFilter === 'All' || task.status === statusFilter
 
-    const matchesPriority = priorityFilter == 'All' || task.priority == priorityFilter
+    const matchesPriority = priorityFilter === 'All' || task.priority === priorityFilter
 
     return matchesTitle && matchesPriority && matchesStatus
 
   });
+
+
+  
 
  
 
