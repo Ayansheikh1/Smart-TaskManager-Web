@@ -199,7 +199,7 @@ const Home = () => {
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-xl font-semibold text-neutral-900">Tasks</h2>
-          <span className="text-sm text-neutral-400">{totalTask} total</span>
+          <span className="text-sm text-neutral-400">{sortedTasks.length} total</span>
         </div>
 
         
