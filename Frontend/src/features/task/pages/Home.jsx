@@ -11,7 +11,12 @@ const Home = () => {
   const { logout, user } = useAuth();
   const { tasks, getTasks,totalTask,error,loading } = useTask();
   const navigate = useNavigate()
+
+
   const[search,setSearch]=useState("");
+  const[statusFilter,setStatusFilter] = useState('All');
+  const[priorityFilter,setPriorityFilter] = useState('All');
+  
 
   const handleLogout = async (e) => {
     await logout();
@@ -42,10 +47,17 @@ const Home = () => {
   loadTasks();
 }, []);
   
+// Filter tasks by search text, selected status, and priority; only tasks matching all conditions are included
+  const filteredTasks = tasks.filter((task) => {
+    const matchesTitle = task.title.toLowerCase().includes(search.toLowerCase());
 
-  const filteredTasks = tasks.filter((task) =>
-  task.title.toLowerCase().includes(search.toLowerCase())
-);
+    const matchesStatus = statusFilter == 'All' || task.status == statusFilter
+
+    const matchesPriority = priorityFilter == 'All' || task.priority == priorityFilter
+
+    return matchesTitle && matchesPriority && matchesStatus
+
+  });
 
  
 
@@ -91,6 +103,7 @@ const Home = () => {
   <ErrorMessage message={error} />
 </div>
 
+
 <div className="max-w-5xl mx-auto mb-6">
   <input
     type="text"
@@ -99,6 +112,32 @@ const Home = () => {
     placeholder="Search tasks..."
     className="w-full rounded-full border border-neutral-300 px-6 py-3 text-neutral-700 outline-none focus:border-neutral-900"
   />
+</div>
+
+<div className="max-w-5xl mx-auto mb-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+  <select
+    value={statusFilter}
+    onChange={(e) => setStatusFilter(e.target.value)}
+    className="rounded-full border border-neutral-300 px-6 py-3 text-neutral-700 outline-none focus:border-neutral-900 bg-white"
+  >
+    <option value="All">All Status</option>
+    <option value="Todo">Todo</option>
+    <option value="In Progress">In Progress</option>
+    <option value="Completed">Completed</option>
+  </select>
+
+  <select
+    value={priorityFilter}
+    onChange={(e) => setPriorityFilter(e.target.value)}
+    className="rounded-full border border-neutral-300 px-6 py-3 text-neutral-700 outline-none focus:border-neutral-900 bg-white"
+  >
+    <option value="All">All Priority</option>
+    <option value="Low">Low</option>
+    <option value="Medium">Medium</option>
+    <option value="High">High</option>
+  </select>
+
 </div>
 
       {/* Tasks section */}
