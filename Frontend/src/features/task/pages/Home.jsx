@@ -62,6 +62,35 @@ const Home = () => {
 
   });
 
+  const copy = [...filteredTasks]; //copy array using spread operator
+
+  const priorityOrder = {
+    High:3,
+    Medium:2,
+    Low:1
+  } //set pr
+
+  const sortedTasks = copy.sort((a,b)=>{
+    if(sort ==="Newest first") 
+      return new Date(b.createdAt)  - new Date(a.createdAt)
+
+    if(sort ==="Oldest first") 
+      return new Date(a.createdAt)  - new Date(b.createdAt)
+
+
+
+    if(sort ==="Due date: nearest first") 
+      return new Date(a.dueDate)  - new Date(b.dueDate) 
+
+    if(sort ==="Due date: latest first") 
+      return new Date(b.dueDate)  - new Date(a.dueDate)    
+
+
+    if(sort==="Priority: High → Low")
+      return priorityOrder[b.priority] -priorityOrder[a.priority]
+
+  })
+
 
   
 
@@ -181,13 +210,13 @@ const Home = () => {
       </p>
     </div>
 
-        ): filteredTasks.length === 0 ? (
+        ): sortedTasks.length === 0 ? (
           <div className="rounded-3xl border border-dashed border-neutral-300 p-10 text-center text-neutral-400">
             No matching tasks found.
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {filteredTasks.map((task) => (
+            {sortedTasks.map((task) => (
               <TaskCard key={task._id} task={task}/>
             ))}
           </div>
