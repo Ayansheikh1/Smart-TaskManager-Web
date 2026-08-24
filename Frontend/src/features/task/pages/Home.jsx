@@ -68,7 +68,7 @@ const Home = () => {
     High:3,
     Medium:2,
     Low:1
-  } //set pr
+  } //set priority order and change high,low,medium into numbers to sort them
 
   const sortedTasks = copy.sort((a,b)=>{
     if(sort ==="Newest first") 
@@ -89,7 +89,9 @@ const Home = () => {
     if(sort==="Priority: High → Low")
       return priorityOrder[b.priority] -priorityOrder[a.priority]
 
-  })
+     return 0; //Default: keep the current order
+
+  }) //sorting the filtered task according to options
 
 
   
