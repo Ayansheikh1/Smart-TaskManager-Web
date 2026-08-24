@@ -21,6 +21,11 @@ const Home = () => {
   //sorting state
   const[sort,setSort] = useState("Default");
 
+
+  //pagination state
+  const[currentPage,setCurrentPage] = useState(1);
+  const tasksPerPage = 6
+
   const handleLogout = async (e) => {
     await logout();
   }
@@ -35,6 +40,14 @@ const Home = () => {
 
   const handleCreateTask = () =>{
     navigate('tasks/create');
+  }
+
+  const handleRemovingFilters = () =>{
+    setSearch("");
+    setStatusFilter("All")
+    setPriorityFilter("All")
+    setSort("Default")
+
   }
 
 
@@ -177,22 +190,29 @@ const Home = () => {
 
 </div>
 
-<div className='max-w-5xl mx-auto mb-6'>
+<div className="flex max-w-5xl mx-auto mb-6 gap-3">
+  
   <select 
- value={sort}
-  onChange={(e) => setSort(e.target.value)}
-  className='w-full rounded-full border border-neutral-300 px-6 py-3 text-neutral-700 outline-none focus:border-neutral-900 bg-white' 
+    value={sort}
+    onChange={(e) => setSort(e.target.value)}
+    className="flex-1 rounded-full border border-neutral-300 px-6 py-3 text-neutral-700 outline-none focus:border-neutral-900 bg-white"
   >
-<option value="Default">Default</option>
-<option value="Newest first">Newest first</option>
-<option value="Oldest first">Oldest first</option>
-<option value="Due date: nearest first">Due date: nearest first</option>
-<option value="Due date: latest first">Due date: latest first</option>
-<option value="Priority: High → Low">Priority: High → Low</option>
-
-
-
+    <option value="Default">Default</option>
+    <option value="Newest first">Newest first</option>
+    <option value="Oldest first">Oldest first</option>
+    <option value="Due date: nearest first">Due date: nearest first</option>
+    <option value="Due date: latest first">Due date: latest first</option>
+    <option value="Priority: High → Low">Priority: High → Low</option>
   </select>
+
+  <button
+    type="button"
+    onClick={handleRemovingFilters}
+    className="shrink-0 rounded-full border border-neutral-300 text-neutral-700 font-medium hover:bg-neutral-100 px-6 py-3 outline-none"
+  >
+    Clear Filters
+  </button>
+
 </div>
 
       {/* Tasks section */}
