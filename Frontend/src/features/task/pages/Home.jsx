@@ -12,11 +12,14 @@ const Home = () => {
   const { tasks, getTasks,totalTask,error,loading } = useTask();
   const navigate = useNavigate()
 
-
+//filtering state
   const[search,setSearch]=useState("");
   const[statusFilter,setStatusFilter] = useState('All');
   const[priorityFilter,setPriorityFilter] = useState('All');
   
+
+  //sorting state
+  const[sort,setSort] = useState("Default");
 
   const handleLogout = async (e) => {
     await logout();
@@ -138,6 +141,24 @@ const Home = () => {
     <option value="High">High</option>
   </select>
 
+</div>
+
+<div className='max-w-5xl mx-auto mb-6'>
+  <select 
+ value={sort}
+  onChange={(e) => setSort(e.target.value)}
+  className='w-full rounded-full border border-neutral-300 px-6 py-3 text-neutral-700 outline-none focus:border-neutral-900 bg-white' 
+  >
+<option value="Default">Default</option>
+<option value="Newest first">Newest first</option>
+<option value="Oldest first">Oldest first</option>
+<option value="Due date: nearest first">Due date: nearest first</option>
+<option value="Due date: latest first">Due date: latest first</option>
+<option value="Priority: High → Low">Priority: High → Low</option>
+
+
+
+  </select>
 </div>
 
       {/* Tasks section */}
