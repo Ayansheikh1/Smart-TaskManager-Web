@@ -150,162 +150,158 @@ const Home = () => {
  
 
   return (
-    <main className="min-h-screen bg-[#FAFBF9] px-4 sm:px-8 py-8">
+  <main className="min-h-screen bg-[#FAFBF9] px-4 sm:px-8 py-8">
 
-      {/* Top bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 max-w-5xl mx-auto mb-10">
-        <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900">
-            Welcome, {user?.username}!
-          </h1>
-          <p className="text-neutral-400 text-sm mt-1">Here's what's on your plate today.</p>
-        </div>
-
-        
-
-        <div className="flex gap-3 flex-wrap">
-
-           <button
-        onClick={handleCreateTask}
-        className="rounded-full border bg-[#A9CB98] text-neutral-900 font-medium hover:bg-[#9bbf88] px-6 py-3 outline-none"
-      >
-        + Create Task
-      </button>
-          <button
-            onClick={handleGetTasks}
-            disabled={loading}
-            className="rounded-full border bg-neutral-900 text-white font-medium hover:bg-neutral-800 px-6 py-3 outline-none"
-          >
-           {loading?"Refreshing...": "Refresh Tasks"}
-          </button>
-          <button
-            onClick={handleLogout}
-            className="rounded-full border border-neutral-300 text-neutral-700 font-medium hover:bg-neutral-100 px-6 py-3 outline-none"
-          >
-            Logout
-          </button>
-        </div>
+    {/* Top bar */}
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 max-w-5xl mx-auto mb-8">
+      <div>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900">
+          Welcome, {user?.username}!
+        </h1>
+        <p className="text-neutral-400 text-sm mt-1">Here's what's on your plate today.</p>
       </div>
 
-      <div className="max-w-5xl mx-auto mb-6">
-  <ErrorMessage message={error} />
-</div>
-
-
-<div className="max-w-5xl mx-auto mb-6">
-  <input
-    type="text"
-    value={search}
-    onChange={(e) => setSearch(e.target.value)}
-    placeholder="Search tasks..."
-    className="w-full rounded-full border border-neutral-300 px-6 py-3 text-neutral-700 outline-none focus:border-neutral-900"
-  />
-</div>
-
-<div className="max-w-5xl mx-auto mb-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-  <select
-    value={statusFilter}
-    onChange={(e) => setStatusFilter(e.target.value)}
-    className="rounded-full border border-neutral-300 px-6 py-3 text-neutral-700 outline-none focus:border-neutral-900 bg-white"
-  >
-    <option value="All">All Status</option>
-    <option value="Todo">Todo</option>
-    <option value="In Progress">In Progress</option>
-    <option value="Completed">Completed</option>
-  </select>
-
-  <select
-    value={priorityFilter}
-    onChange={(e) => setPriorityFilter(e.target.value)}
-    className="rounded-full border border-neutral-300 px-6 py-3 text-neutral-700 outline-none focus:border-neutral-900 bg-white"
-  >
-    <option value="All">All Priority</option>
-    <option value="Low">Low</option>
-    <option value="Medium">Medium</option>
-    <option value="High">High</option>
-  </select>
-
-</div>
-
-<div className="flex max-w-5xl mx-auto mb-6 gap-3">
-  
-  <select 
-    value={sort}
-    onChange={(e) => setSort(e.target.value)}
-    className="flex-1 rounded-full border border-neutral-300 px-6 py-3 text-neutral-700 outline-none focus:border-neutral-900 bg-white"
-  >
-    <option value="Default">Default</option>
-    <option value="Newest first">Newest first</option>
-    <option value="Oldest first">Oldest first</option>
-    <option value="Due date: nearest first">Due date: nearest first</option>
-    <option value="Due date: latest first">Due date: latest first</option>
-    <option value="Priority: High → Low">Priority: High → Low</option>
-  </select>
-
-  <button
-    type="button"
-    onClick={handleRemovingFilters}
-    className="shrink-0 rounded-full border border-neutral-300 text-neutral-700 font-medium hover:bg-neutral-100 px-6 py-3 outline-none"
-  >
-    Clear Filters
-  </button>
-
-</div>
-
-      {/* Tasks section */}
-      <div className="max-w-5xl mx-auto">
-        <div className="flex items-center justify-between mb-5">
-          <h2 className="text-xl font-semibold text-neutral-900">Tasks</h2>
-          <span className="text-sm text-neutral-400">{sortedTasks.length} total</span>
-        </div>
-
-        
-
-        {
-        loading?(
-              <div className="rounded-3xl border border-neutral-200 p-10 text-center">
-      <p className="text-neutral-400">
-        Loading tasks...
-      </p>
+      <div className="flex gap-3 flex-wrap">
+        <button
+          onClick={handleCreateTask}
+          className="rounded-full border bg-[#A9CB98] text-neutral-900 font-medium hover:bg-[#9bbf88] px-6 py-3 outline-none"
+        >
+          + Create Task
+        </button>
+        <button
+          onClick={handleGetTasks}
+          disabled={loading}
+          className="rounded-full border bg-neutral-900 text-white font-medium hover:bg-neutral-800 px-6 py-3 outline-none disabled:opacity-60"
+        >
+          {loading ? "Refreshing..." : "Refresh Tasks"}
+        </button>
+        <button
+          onClick={handleLogout}
+          className="rounded-full border border-neutral-300 text-neutral-700 font-medium hover:bg-neutral-100 px-6 py-3 outline-none"
+        >
+          Logout
+        </button>
+      </div>
     </div>
 
-        ): currentTasks.length === 0 ? (
-          <div className="rounded-3xl border border-dashed border-neutral-300 p-10 text-center text-neutral-400">
-            No matching tasks found.
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {currentTasks.map((task) => (
-              <TaskCard key={task._id} task={task}/>
-            ))}
-            <div className="flex items-center justify-center gap-3 mt-8">
-  <button
-    disabled={currentPage===1}
-    onClick={handlePreviousButton}
-    className="rounded-full border border-neutral-300 text-neutral-700 font-medium hover:bg-neutral-100 px-6 py-3 outline-none"
-  >
-    Previous
-  </button>
+    {/* Error message */}
+    {error && (
+      <div className="max-w-5xl mx-auto mb-6">
+        <ErrorMessage message={error} />
+      </div>
+    )}
 
-  <span className="text-sm text-neutral-500">
-    Page {currentPage} of {totalPages}
-  </span>
+    {/* Toolbar: search + filters + sort, grouped in one card */}
+    <div className="max-w-5xl mx-auto mb-8 bg-white rounded-3xl border border-neutral-100 shadow-sm p-5 space-y-4">
 
-  <button
-  disabled={currentPage===totalPages}
-    onClick={handleNextButton}
-    className="rounded-full bg-neutral-900 text-white font-medium hover:bg-neutral-800 px-6 py-3 outline-none"
-  >
-    Next
-  </button>
-</div>
-          </div>
-        )}
+      <input
+        type="text"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Search tasks..."
+        className="w-full rounded-full border border-neutral-300 px-6 py-3 text-neutral-700 outline-none focus:border-neutral-900"
+      />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          className="rounded-full border border-neutral-300 px-6 py-3 text-neutral-700 outline-none focus:border-neutral-900 bg-white"
+        >
+          <option value="All">All Status</option>
+          <option value="Todo">Todo</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+        </select>
+
+        <select
+          value={priorityFilter}
+          onChange={(e) => setPriorityFilter(e.target.value)}
+          className="rounded-full border border-neutral-300 px-6 py-3 text-neutral-700 outline-none focus:border-neutral-900 bg-white"
+        >
+          <option value="All">All Priority</option>
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
       </div>
 
-    </main>
-  )
+      <div className="flex flex-col sm:flex-row gap-3">
+        <select
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+          className="flex-1 rounded-full border border-neutral-300 px-6 py-3 text-neutral-700 outline-none focus:border-neutral-900 bg-white"
+        >
+          <option value="Default">Default</option>
+          <option value="Newest first">Newest first</option>
+          <option value="Oldest first">Oldest first</option>
+          <option value="Due date: nearest first">Due date: nearest first</option>
+          <option value="Due date: latest first">Due date: latest first</option>
+          <option value="Priority: High → Low">Priority: High → Low</option>
+        </select>
+
+        <button
+          type="button"
+          onClick={handleRemovingFilters}
+          className="shrink-0 rounded-full border border-neutral-300 text-neutral-700 font-medium hover:bg-neutral-100 px-6 py-3 outline-none"
+        >
+          Clear Filters
+        </button>
+      </div>
+
+    </div>
+
+    {/* Tasks section */}
+    <div className="max-w-5xl mx-auto">
+      <div className="flex items-center justify-between mb-5">
+        <h2 className="text-xl font-semibold text-neutral-900">Tasks</h2>
+        <span className="text-sm text-neutral-400">{sortedTasks.length} total</span>
+      </div>
+
+      {loading ? (
+        <div className="rounded-3xl border border-neutral-200 p-10 text-center">
+          <p className="text-neutral-400">Loading tasks...</p>
+        </div>
+      ) : currentTasks.length === 0 ? (
+        <div className="rounded-3xl border border-dashed border-neutral-300 p-10 text-center text-neutral-400">
+          No matching tasks found.
+        </div>
+      ) : (
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {currentTasks.map((task) => (
+              <TaskCard key={task._id} task={task} />
+            ))}
+          </div>
+
+          {/* Pagination — moved outside the grid so it doesn't act like a card */}
+          <div className="flex items-center justify-center gap-3 mt-8">
+            <button
+              disabled={currentPage === 1}
+              onClick={handlePreviousButton}
+              className="rounded-full border border-neutral-300 text-neutral-700 font-medium hover:bg-neutral-100 px-6 py-3 outline-none disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              Previous
+            </button>
+
+            <span className="text-sm text-neutral-500">
+              Page {currentPage} of {totalPages}
+            </span>
+
+            <button
+              disabled={currentPage === totalPages}
+              onClick={handleNextButton}
+              className="rounded-full bg-neutral-900 text-white font-medium hover:bg-neutral-800 px-6 py-3 outline-none disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              Next
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+
+  </main>
+)
 }
 
 export default Home
