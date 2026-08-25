@@ -146,37 +146,45 @@ const Home = () => {
 
 //statistics
 let totalTodo = 0;
+let inProgress = 0;
+let completed = 0;
+let highPriority = 0;
   for(let i = 0;i<tasks.length;i++){
     if(tasks[i].status==="Todo"){
       totalTodo++;
     }
-
-}
-
-let inProgress = 0;
-  for(let i = 0;i<tasks.length;i++){
     if(tasks[i].status==="In Progress"){
       inProgress++;
     }
-
-}
-
-
-let completed = 0;
-  for(let i = 0;i<tasks.length;i++){
     if(tasks[i].status==="Completed"){
       completed++;
     }
-
-}
-
-let highPriority = 0;
-for(let i = 0;i<tasks.length;i++){
     if(tasks[i].priority==="High"){
       highPriority++;
     }
 
+
 }
+
+
+  
+
+
+
+
+
+
+//DueDate Status Feature
+
+const today = new Date();
+
+for(let i = 0;i<tasks.length;i++){
+  const dueDate = new Date(tasks[i].dueDate);
+    if(dueDate < today){
+      //overdue
+    }
+    }
+
 
 
   
@@ -395,5 +403,6 @@ for(let i = 0;i<tasks.length;i++){
   </main>
 )
 }
+
 
 export default Home
