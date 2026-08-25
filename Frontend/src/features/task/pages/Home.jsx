@@ -22,9 +22,7 @@ const Home = () => {
   const[sort,setSort] = useState("Default");
 
 
-  //pagination state
-  const[currentPage,setCurrentPage] = useState(1);
-  const tasksPerPage = 6
+  
 
   const handleLogout = async (e) => {
     await logout();
@@ -105,6 +103,41 @@ const Home = () => {
      return 0; //Default: keep the current order
 
   }) //sorting the filtered task according to options
+
+
+
+
+
+
+//pagination state
+  const[currentPage,setCurrentPage] = useState(1);
+  const tasksPerPage = 6
+
+
+  let startIndex = (currentPage-1) * tasksPerPage;
+  let endIndex = currentPage * tasksPerPage; //withdraw indexes for slicing array
+
+  const currentTasks = sortedTasks.slice(startIndex,endIndex); // slice the sortedTask to shown only 6 task per page
+
+
+  const totalPages = Math.ceil(sortedTasks.length/tasksPerPage); //count total pages required to shown on display 
+
+
+
+  const handlePreviousButton = () =>{
+    if(currentPage > 1){
+      return setCurrentPage(currentPage-1)
+    }
+  }
+
+  const handleNextButton = () =>{
+    if(currentPage<totalPages){
+      return setCurrentPage(currentPage+1)
+    }
+  }
+
+
+
 
 
   
@@ -232,15 +265,34 @@ const Home = () => {
       </p>
     </div>
 
-        ): sortedTasks.length === 0 ? (
+        ): currentTasks.length === 0 ? (
           <div className="rounded-3xl border border-dashed border-neutral-300 p-10 text-center text-neutral-400">
             No matching tasks found.
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {sortedTasks.map((task) => (
+            {currentTasks.map((task) => (
               <TaskCard key={task._id} task={task}/>
             ))}
+            <div className="flex items-center justify-center gap-3 mt-8">
+  <button
+    onClick={handlePreviousButton}
+    className="rounded-full border border-neutral-300 text-neutral-700 font-medium hover:bg-neutral-100 px-6 py-3 outline-none"
+  >
+    Previous
+  </button>
+
+  <span className="text-sm text-neutral-500">
+    Page {currentPage} of {totalPages}
+  </span>
+
+  <button
+    onClick={handleNextButton}
+    className="rounded-full bg-neutral-900 text-white font-medium hover:bg-neutral-800 px-6 py-3 outline-none"
+  >
+    Next
+  </button>
+</div>
           </div>
         )}
       </div>
