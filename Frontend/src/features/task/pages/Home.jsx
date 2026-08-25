@@ -4,6 +4,7 @@ import { useTask } from '../hooks/useTask';
 import TaskCard from '../components/TaskCArd';
 import { useNavigate } from 'react-router';
 import ErrorMessage from '../../../../shared/component/ErrorMessage';
+import { ListTodo, Clock, CheckCircle2, AlertCircle, LayoutGrid } from 'lucide-react'
 
 
 const Home = () => {
@@ -143,6 +144,39 @@ const Home = () => {
 
 
 
+//statistics
+let totalTodo = 0;
+  for(let i = 0;i<tasks.length;i++){
+    if(tasks[i].status==="Todo"){
+      totalTodo++;
+    }
+
+}
+
+let inProgress = 0;
+  for(let i = 0;i<tasks.length;i++){
+    if(tasks[i].status==="In Progress"){
+      inProgress++;
+    }
+
+}
+
+
+let completed = 0;
+  for(let i = 0;i<tasks.length;i++){
+    if(tasks[i].status==="Completed"){
+      completed++;
+    }
+
+}
+
+let highPriority = 0;
+for(let i = 0;i<tasks.length;i++){
+    if(tasks[i].priority==="High"){
+      highPriority++;
+    }
+
+}
 
 
   
@@ -183,6 +217,64 @@ const Home = () => {
         </button>
       </div>
     </div>
+
+
+
+<div className="max-w-5xl mx-auto mb-8">
+  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+
+    <div className="bg-white rounded-3xl border border-neutral-100 shadow-sm p-5 flex items-center gap-4">
+      <div className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center shrink-0">
+        <LayoutGrid size={18} className="text-neutral-600" />
+      </div>
+      <div>
+        <p className="text-xs text-neutral-400">Total Tasks</p>
+        <p className="text-xl font-bold text-neutral-900">{totalTask}</p>
+      </div>
+    </div>
+
+    <div className="bg-white rounded-3xl border border-neutral-100 shadow-sm p-5 flex items-center gap-4">
+      <div className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center shrink-0">
+        <ListTodo size={18} className="text-neutral-600" />
+      </div>
+      <div>
+        <p className="text-xs text-neutral-400">Todo</p>
+        <p className="text-xl font-bold text-neutral-900">{totalTodo}</p>
+      </div>
+    </div>
+
+    <div className="bg-white rounded-3xl border border-neutral-100 shadow-sm p-5 flex items-center gap-4">
+      <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
+        <Clock size={18} className="text-amber-600" />
+      </div>
+      <div>
+        <p className="text-xs text-neutral-400">In Progress</p>
+        <p className="text-xl font-bold text-neutral-900">{inProgress}</p>
+      </div>
+    </div>
+
+    <div className="bg-white rounded-3xl border border-neutral-100 shadow-sm p-5 flex items-center gap-4">
+      <div className="w-10 h-10 rounded-full bg-[#A9CB98]/30 flex items-center justify-center shrink-0">
+        <CheckCircle2 size={18} className="text-green-700" />
+      </div>
+      <div>
+        <p className="text-xs text-neutral-400">Completed</p>
+        <p className="text-xl font-bold text-neutral-900">{completed}</p>
+      </div>
+    </div>
+
+    <div className="bg-white rounded-3xl border border-neutral-100 shadow-sm p-5 flex items-center gap-4">
+      <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0">
+        <AlertCircle size={18} className="text-red-600" />
+      </div>
+      <div>
+        <p className="text-xs text-neutral-400">High Priority</p>
+        <p className="text-xl font-bold text-neutral-900">{highPriority}</p>
+      </div>
+    </div>
+
+  </div>
+</div>
 
     {/* Error message */}
     {error && (
