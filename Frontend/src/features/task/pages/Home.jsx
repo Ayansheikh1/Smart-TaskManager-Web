@@ -136,6 +136,11 @@ const Home = () => {
     }
   }
 
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [search,priorityFilter,statusFilter,sort])
+  
+
 
 
 
