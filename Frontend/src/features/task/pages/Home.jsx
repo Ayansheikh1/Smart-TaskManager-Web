@@ -276,6 +276,7 @@ const Home = () => {
             ))}
             <div className="flex items-center justify-center gap-3 mt-8">
   <button
+    disabled={currentPage===1}
     onClick={handlePreviousButton}
     className="rounded-full border border-neutral-300 text-neutral-700 font-medium hover:bg-neutral-100 px-6 py-3 outline-none"
   >
@@ -287,6 +288,7 @@ const Home = () => {
   </span>
 
   <button
+  disabled={currentPage===totalPages}
     onClick={handleNextButton}
     className="rounded-full bg-neutral-900 text-white font-medium hover:bg-neutral-800 px-6 py-3 outline-none"
   >
