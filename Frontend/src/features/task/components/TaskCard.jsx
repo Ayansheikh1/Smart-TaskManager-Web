@@ -1,7 +1,4 @@
-
 import { useNavigate } from 'react-router';
-import { Pencil } from 'lucide-react';
-
 
 
 const statusStyles = {
@@ -16,17 +13,32 @@ const priorityStyles = {
   "High": "bg-red-50 text-red-600",
 }
 
+const dueBadgeStyles = {
+  "Overdue": "bg-red-50 text-red-600",
+  "Due Today": "bg-amber-50 text-amber-700",
+  "Upcoming": "bg-[#A9CB98]/20 text-green-700",
+}
+
 const TaskCard = ({ task }) => {
 
+  const dueDateValue = new Date(task.dueDate).setHours(0, 0, 0, 0)
+  const today = new Date().setHours(0, 0, 0, 0)
+
+  let dueStatus = "Upcoming"
+
+  if (dueDateValue < today) {
+    dueStatus = "Overdue"
+  } else if (dueDateValue === today) {
+    dueStatus = "Due Today"
+  } else {
+    dueStatus = "Upcoming"
+  }
 
   const navigate = useNavigate()
 
   const handleViewTask = () => {
     navigate(`/tasks/${task._id}`)
   }
-
-
-
 
   return (
     <div className="bg-white rounded-3xl shadow-sm border border-neutral-100 p-5 flex flex-col gap-3 hover:shadow-md transition-shadow">
@@ -46,6 +58,11 @@ const TaskCard = ({ task }) => {
         <span className={`text-xs font-medium rounded-full px-3 py-1 ${priorityStyles[task.priority] || "bg-neutral-100 text-neutral-700"}`}>
           {task.priority}
         </span>
+        {task.dueDate && (
+          <span className={`text-xs font-medium rounded-full px-3 py-1 ${dueBadgeStyles[dueStatus]}`}>
+            {dueStatus}
+          </span>
+        )}
       </div>
 
       {task.dueDate && (
@@ -54,18 +71,14 @@ const TaskCard = ({ task }) => {
         </p>
       )}
 
-
       <div className='flex gap-3 mt-8'>
         <button
-          onClick={handleViewTask} 
-          className="flex items-center gap-2 rounded-full text-sm font-medium  px-6 py-3 border"
+          onClick={handleViewTask}
+          className="flex items-center gap-2 rounded-full text-sm font-medium px-6 py-3 border"
         >
           View
         </button>
-
-        
       </div>
-
 
     </div>
   )
