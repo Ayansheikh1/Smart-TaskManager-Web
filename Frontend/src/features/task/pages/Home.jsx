@@ -4,7 +4,7 @@ import { useTask } from '../hooks/useTask';
 import TaskCard from '../components/TaskCArd';
 import { useNavigate } from 'react-router';
 import ErrorMessage from '../../../../shared/component/ErrorMessage';
-import { ListTodo, Clock, CheckCircle2, AlertCircle, LayoutGrid } from 'lucide-react'
+import { LayoutGrid, ListTodo, Clock, CheckCircle2, AlertCircle, CalendarClock, CalendarCheck, CalendarDays } from 'lucide-react'
 
 
 const Home = () => {
@@ -241,7 +241,7 @@ const today = new Date().setHours(0,0,0,0);
 
 
 <div className="max-w-5xl mx-auto mb-8">
-  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
 
     <div className="bg-white rounded-3xl border border-neutral-100 shadow-sm p-5 flex items-center gap-4">
       <div className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center shrink-0">
@@ -290,6 +290,36 @@ const today = new Date().setHours(0,0,0,0);
       <div>
         <p className="text-xs text-neutral-400">High Priority</p>
         <p className="text-xl font-bold text-neutral-900">{highPriority}</p>
+      </div>
+    </div>
+
+    <div className="bg-white rounded-3xl border border-neutral-100 shadow-sm p-5 flex items-center gap-4">
+      <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0">
+        <CalendarClock size={18} className="text-red-600" />
+      </div>
+      <div>
+        <p className="text-xs text-neutral-400">Overdue</p>
+        <p className="text-xl font-bold text-neutral-900">{overdue}</p>
+      </div>
+    </div>
+
+    <div className="bg-white rounded-3xl border border-neutral-100 shadow-sm p-5 flex items-center gap-4">
+      <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
+        <CalendarCheck size={18} className="text-amber-600" />
+      </div>
+      <div>
+        <p className="text-xs text-neutral-400">Due Today</p>
+        <p className="text-xl font-bold text-neutral-900">{dueToday}</p>
+      </div>
+    </div>
+
+    <div className="bg-white rounded-3xl border border-neutral-100 shadow-sm p-5 flex items-center gap-4">
+      <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
+        <CalendarDays size={18} className="text-blue-600" />
+      </div>
+      <div>
+        <p className="text-xs text-neutral-400">Upcoming</p>
+        <p className="text-xl font-bold text-neutral-900">{upcoming}</p>
       </div>
     </div>
 
