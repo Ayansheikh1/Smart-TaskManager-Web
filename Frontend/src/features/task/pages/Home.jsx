@@ -149,6 +149,13 @@ let totalTodo = 0;
 let inProgress = 0;
 let completed = 0;
 let highPriority = 0;
+
+let overdue =0;
+let dueToday = 0;
+let upcoming = 0;
+
+const today = new Date().setHours(0,0,0,0);
+
   for(let i = 0;i<tasks.length;i++){
     if(tasks[i].status==="Todo"){
       totalTodo++;
@@ -164,6 +171,16 @@ let highPriority = 0;
     }
 
 
+     const dueDate = new Date(tasks[i].dueDate).setHours(0,0,0,0);
+    if(dueDate < today){
+      overdue++
+    }else if(dueDate === today){
+      dueToday++
+    }else{
+      upcoming++
+    }
+
+
 }
 
 
@@ -174,16 +191,11 @@ let highPriority = 0;
 
 
 
-//DueDate Status Feature
 
-const today = new Date();
 
-for(let i = 0;i<tasks.length;i++){
-  const dueDate = new Date(tasks[i].dueDate);
-    if(dueDate < today){
-      //overdue
-    }
-    }
+
+
+
 
 
 
