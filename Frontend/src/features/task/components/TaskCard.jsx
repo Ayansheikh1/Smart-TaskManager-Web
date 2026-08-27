@@ -34,6 +34,8 @@ const TaskCard = ({ task }) => {
     dueStatus = "Upcoming"
   }
 
+
+  
   const navigate = useNavigate()
 
   const handleViewTask = () => {
