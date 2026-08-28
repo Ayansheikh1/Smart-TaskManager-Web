@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 export const ToastContext = createContext()
 
 export const ToastProvider = ({children})=>{
-    const[toast,setToast] = useState("");
+    const[toast,setToast] = useState(null);
 
     function showToast(message,type){
         if(message && type){
