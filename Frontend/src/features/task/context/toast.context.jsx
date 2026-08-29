@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 
+
 export const ToastContext = createContext()
 
 export const ToastProvider = ({children})=>{
@@ -8,6 +9,7 @@ export const ToastProvider = ({children})=>{
     function showToast(message,type){
         if(message && type){
             setToast({message,type})
+           
         }
     }
 
