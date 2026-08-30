@@ -12,6 +12,7 @@ export const ToastProvider = ({children})=>{
             setToast({message,type})
            
         }
+        console.log(message, type)
     }
 
 
@@ -19,9 +20,9 @@ export const ToastProvider = ({children})=>{
 
     return(
         <ToastContext.Provider value={{toast,showToast}}>
-        
-        {children}
         <Toast />
+        {children}
+        
         </ToastContext.Provider>
     )
 }
