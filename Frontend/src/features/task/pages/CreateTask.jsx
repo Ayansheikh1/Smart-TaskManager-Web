@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router';
 import { ArrowLeft } from 'lucide-react'
 import { useTask } from "../hooks/useTask"
 import ErrorMessage from '../../../../shared/component/ErrorMessage';
+import { ToastContext } from '../context/toast.context';
 
 const CreateTask = () => {
 
@@ -13,12 +14,14 @@ const CreateTask = () => {
   const [dueDate, setDueDate] = useState("");
 
   const {create,loading,error} = useTask();
+  const {showToast} = useContext(ToastContext)
   const navigate = useNavigate()
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
     try{
     await create({title,description,status,priority,dueDate});
+    showToast("Create Task created successfully","success")
     navigate('/');
     }catch(error){
       // Error is already stored in context
