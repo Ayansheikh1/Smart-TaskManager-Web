@@ -12,7 +12,7 @@ export const ToastProvider = ({children})=>{
             setToast({message,type})
            
         }
-        console.log(message, type)
+        
     }
 
 
