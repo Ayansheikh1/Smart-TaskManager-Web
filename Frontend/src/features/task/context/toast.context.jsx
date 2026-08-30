@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import Toast from '../components/Toast'
 
 
 export const ToastContext = createContext()
@@ -15,11 +16,12 @@ export const ToastProvider = ({children})=>{
 
 
 
-    
+
     return(
         <ToastContext.Provider value={{toast,showToast}}>
         
         {children}
+        <Toast />
         </ToastContext.Provider>
     )
 }
