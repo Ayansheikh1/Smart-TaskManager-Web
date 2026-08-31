@@ -13,6 +13,7 @@ export const useAuth = () =>{
         try {
             const data = await registerUser({username,email,password});
             setUser(data.user);
+            return data
         } catch (error) {
             setError(
                 error.response?.data?.message || "Failed to Register"
@@ -31,6 +32,7 @@ export const useAuth = () =>{
         try{
             const data = await loginUser({email,password});
             setUser(data.user);
+            return data
 
         }catch(error){
             setError(
@@ -49,6 +51,7 @@ export const useAuth = () =>{
         try{
             const data = await logoutUser();
             setUser(null);
+            return data
         }catch(error){
             setError(
                 error.response?.data?.message || "Failed to logout"
