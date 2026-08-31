@@ -1,8 +1,9 @@
 import { useNavigate, useParams} from "react-router";
 import { useTask } from "../hooks/useTask"
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import{ArrowLeft,Pencil,Calendar,Trash2} from 'lucide-react'
 import ErrorMessage from "../../../../shared/component/ErrorMessage";
+import { ToastContext } from "../context/toast.context";
 
 
 const statusStyles = {
@@ -22,6 +23,8 @@ const TaskDetail = () => {
     const {task,viewTask,loading,removeTask,error} = useTask();
     const navigate = useNavigate();
     const {taskId} = useParams()
+
+    const{showToast} = useContext(ToastContext)
   
 
  
@@ -43,7 +46,9 @@ const TaskDetail = () => {
   if (!confirmed) return;
 
   try {
-    await removeTask(taskId);
+    const response =  await removeTask(taskId);
+    showToast(response.message,"success")
+
     navigate("/");
   } catch (error) {
     // Error is handled in context
