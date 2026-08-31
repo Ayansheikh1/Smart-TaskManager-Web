@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useTask } from '../hooks/useTask'
 import { Link, useNavigate, useParams } from 'react-router';
 import { ArrowLeft } from 'lucide-react'
 import { useState ,useEffect} from 'react';
 import ErrorMessage from '../../../../shared/component/ErrorMessage';
+import { ToastContext } from '../context/toast.context';
 
 const EditTask = () => {
 
@@ -18,6 +19,8 @@ const EditTask = () => {
     const {task,loading,viewTask,update,error} = useTask();
     const {taskId} = useParams();
     const navigate = useNavigate()
+
+    const{showToast} = useContext(ToastContext);
 
     useEffect(() => {
       viewTask(taskId)
