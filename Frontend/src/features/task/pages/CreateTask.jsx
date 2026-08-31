@@ -20,8 +20,8 @@ const CreateTask = () => {
   const handleSubmit = async (e) =>{
     e.preventDefault();
     try{
-    await create({title,description,status,priority,dueDate});
-    showToast("Create Task created successfully","success")
+    const response = await create({title,description,status,priority,dueDate});
+    showToast(response.message,"success")
     navigate('/');
     }catch(error){
       // Error is already stored in context

@@ -49,6 +49,7 @@ const EditTask = () => {
             priority,
             dueDate
         })
+        showToast("Task updated successfully","success")
        navigate(`/tasks/${taskId}`);
     }catch(error){
         //handle in context
