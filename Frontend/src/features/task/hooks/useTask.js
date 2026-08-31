@@ -37,6 +37,7 @@ export const useTask = ()=>{
             const data = await getAllTasks();
             setTasks(data.tasks)
             setTotalTask(data.totalTasks)
+            return data
         } catch(error){
             setError(
                 error.response?.data?.message || "Failed to fetch tasks"

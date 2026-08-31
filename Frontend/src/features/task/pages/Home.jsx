@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useContext } from 'react'
 import { useAuth } from '../../auth/hooks/useAuth'
 import { useTask } from '../hooks/useTask';
 import TaskCard from '../components/TaskCArd';
 import { useNavigate } from 'react-router';
 import ErrorMessage from '../../../../shared/component/ErrorMessage';
 import { LayoutGrid, ListTodo, Clock, CheckCircle2, AlertCircle, CalendarClock, CalendarCheck, CalendarDays } from 'lucide-react'
+import { ToastContext } from '../context/toast.context';
 
 
 const Home = () => {
@@ -12,6 +13,8 @@ const Home = () => {
   const { logout, user } = useAuth();
   const { tasks, getTasks,totalTask,error,loading } = useTask();
   const navigate = useNavigate()
+
+    const{showToast} = useContext(ToastContext);
 
 //filtering state
   const[search,setSearch]=useState("");
@@ -26,12 +29,16 @@ const Home = () => {
   
 
   const handleLogout = async (e) => {
-    await logout();
+    const response = await logout();
+    
+    showToast(response.message,"success")
   }
 
   const handleGetTasks = async () => {
   try {
-    await getTasks();
+    const response = await getTasks();
+    console.log(response)
+    showToast(response.message,"success");
   } catch (error) {
     // Error is already handled in TaskContext
   }
