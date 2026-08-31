@@ -37,7 +37,7 @@ const Home = () => {
   const handleGetTasks = async () => {
   try {
     const response = await getTasks();
-    console.log(response)
+    
     showToast(response.message,"success");
   } catch (error) {
     // Error is already handled in TaskContext
