@@ -12,6 +12,12 @@ export const ToastProvider = ({children})=>{
             setToast({message,type})
            
         }
+
+        setTimeout(()=>{
+            setToast(null)
+        },3000)
+
+        
         
     }
 
