@@ -47,6 +47,7 @@ const TaskDetail = () => {
 
   try {
     const response =  await removeTask(taskId);
+    
     showToast(response.message,"success")
 
     navigate("/");

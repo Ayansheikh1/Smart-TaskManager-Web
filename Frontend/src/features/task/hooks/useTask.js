@@ -93,7 +93,7 @@ export const useTask = ()=>{
         setLoading(true);
         setError(null);
         try{
-                await deleteTask(taskId)
+              const data =  await deleteTask(taskId)
                 return data
         }catch(error){
             setError(
