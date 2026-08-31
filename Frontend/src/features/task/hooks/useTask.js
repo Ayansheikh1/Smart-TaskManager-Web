@@ -54,6 +54,7 @@ export const useTask = ()=>{
         try{
             const data = await getTaskById(taskId);
             setTask(data.task)
+            return data
         } catch(error){
             setError(
                 error.response?.data?.message || "Failed to fetch task"
@@ -93,6 +94,7 @@ export const useTask = ()=>{
         setError(null);
         try{
                 await deleteTask(taskId)
+                return data
         }catch(error){
             setError(
                 error.response?.data?.message || "Failed to delete task"
