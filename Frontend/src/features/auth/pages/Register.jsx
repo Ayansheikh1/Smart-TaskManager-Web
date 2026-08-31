@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState ,useContext } from 'react'
 import { useAuth } from '../hooks/useAuth'
 import { useNavigate ,Link } from 'react-router';
 import ErrorMessage from '../../../../shared/component/ErrorMessage';
+import { ToastContext } from '../../task/context/toast.context';
 
 const Register = () => {
 
@@ -13,10 +14,13 @@ const Register = () => {
 
     const {loading,register,error} = useAuth();
 
+     const {showToast} = useContext(ToastContext)
+
     const handleSubmit = async (e)=>{
         e.preventDefault();
         try{
-        await register({username,email,password});
+        const response = await register({username,email,password});
+        showToast(response.message,"success")
         navigate('/')
         }catch(error){
           //handle in context
