@@ -42,14 +42,14 @@ const EditTask = () => {
     const handleSubmit =async(e)=>{
         e.preventDefault();
         try{
-        await update(taskId,{
+        const response = await update(taskId,{
             title,
             description,
             status,
             priority,
             dueDate
         })
-        showToast("Task updated successfully","success")
+        showToast(response.message,"success")
        navigate(`/tasks/${taskId}`);
     }catch(error){
         //handle in context
