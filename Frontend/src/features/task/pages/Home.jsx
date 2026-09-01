@@ -255,6 +255,13 @@ completionPercentage = Math.floor((completed/totalTask)*100)
     </div>
 
 
+{/* Error message */}
+    {error && (
+      <div className="max-w-5xl mx-auto mb-6">
+        <ErrorMessage message={error} />
+      </div>
+    )}
+
 
 <div className="max-w-5xl mx-auto mb-8">
   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -342,12 +349,7 @@ completionPercentage = Math.floor((completed/totalTask)*100)
   </div>
 </div>
 
-    {/* Error message */}
-    {error && (
-      <div className="max-w-5xl mx-auto mb-6">
-        <ErrorMessage message={error} />
-      </div>
-    )}
+    
 
     {/* Toolbar: search + filters + sort, grouped in one card */}
     <div className="max-w-5xl mx-auto mb-8 bg-white rounded-3xl border border-neutral-100 shadow-sm p-5 space-y-4">
