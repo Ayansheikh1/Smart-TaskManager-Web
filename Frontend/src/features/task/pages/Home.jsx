@@ -262,7 +262,7 @@ completionPercentage = Math.floor((completed/totalTask)*100)
       </div>
     )}
 
-
+{/** Stats cards */}
 <div className="max-w-5xl mx-auto mb-8">
   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
 
@@ -348,6 +348,16 @@ completionPercentage = Math.floor((completed/totalTask)*100)
 
   </div>
 </div>
+
+
+{/** analytics */}
+
+<h3 className='max-w-5xl mx-auto mb-3 font-bold'>Task Completion</h3>
+  <div className="max-w-5xl mx-auto mb-6 bg-neutral-100 rounded-full">
+   
+    <div className="bg-[#A9CB98] text-xs font-medium text-black text-center p-0.5 leading-none rounded-full h-4 flex items-center justify-center" style={{width: `${completionPercentage}%`}}  > {completionPercentage}%</div>
+  </div>
+
 
     
 
