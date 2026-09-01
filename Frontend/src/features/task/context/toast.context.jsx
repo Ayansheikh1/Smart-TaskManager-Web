@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useRef, useState } from "react";
 import Toast from '../components/Toast'
 
 
@@ -6,6 +6,7 @@ export const ToastContext = createContext()
 
 export const ToastProvider = ({children})=>{
     const[toast,setToast] = useState(null);
+    const timerId = useRef(null)
 
     function showToast(message,type){
         if(message && type){
@@ -13,10 +14,21 @@ export const ToastProvider = ({children})=>{
            
         }
 
-        setTimeout(()=>{
+        if(timerId.current){
+            clearTimeout(timerId.current);
+        }
+        
+
+       timerId.current = setTimeout(()=>{
+
             setToast(null)
         },3000)
 
+
+        
+        
+            
+        
         
         
     }
