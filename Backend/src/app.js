@@ -1,6 +1,7 @@
 const express = require("express");
 const authRouter = require('./routes/auth.routes')
 const taskRouter = require('./routes/task.routes')
+const aiRouter = require('./routes/ai.routes')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
@@ -17,6 +18,7 @@ app.use(cors({
 
 app.use("/api/auth",authRouter);
 app.use('/api/task',taskRouter);
+app.use('/api/ai',aiRouter);
 
 
 module.exports = app;
