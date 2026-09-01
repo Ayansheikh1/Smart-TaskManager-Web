@@ -191,6 +191,15 @@ const today = new Date().setHours(0,0,0,0);
 }
 
 
+//analytics
+let completionPercentage;
+if(totalTask===0){
+  completionPercentage = 0
+}else{
+completionPercentage = Math.floor((completed/totalTask)*100)
+}
+
+
   
 
 
