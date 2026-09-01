@@ -16,6 +16,7 @@ export const ToastProvider = ({children})=>{
 
         if(timerId.current){
             clearTimeout(timerId.current);
+            timerId.current = null
         }
         
 
