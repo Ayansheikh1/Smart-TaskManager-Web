@@ -1,5 +1,6 @@
 const express = require('express');
 const authMiddleware = require('../middleware/auth.middleware');
+const aiController = require('../controller/ai.controller');
 
 
 const aiRouter = express.Router();
@@ -11,7 +12,7 @@ const aiRouter = express.Router();
  
  */
 
-aiRouter.post("/")
+aiRouter.post("/generate-tasks",authMiddleware.authUser,aiController.generateTasksController);
 
 
 
