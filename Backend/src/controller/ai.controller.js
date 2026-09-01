@@ -8,7 +8,12 @@ const taskModel = require('../models/task.model');
  * @access private
  */
 async function generateTasksController(req,res){
-    
+    try{
+        const {goal} = req.body;
+        const owner = req.user.id
+    }catch(error){
+        
+    }
 }
 
 
