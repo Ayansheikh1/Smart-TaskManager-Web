@@ -350,13 +350,23 @@ completionPercentage = Math.floor((completed/totalTask)*100)
 </div>
 
 
-{/** analytics */}
+{/* Analytics */}
 
-<h3 className='max-w-5xl mx-auto mb-3 font-bold'>Task Completion</h3>
-  <div className="max-w-5xl mx-auto mb-6 bg-neutral-100 rounded-full">
-   
-    <div className="bg-[#A9CB98] text-xs font-medium text-black text-center p-0.5 leading-none rounded-full h-4 flex items-center justify-center" style={{width: `${completionPercentage}%`}}  > {completionPercentage}%</div>
+<div className="max-w-5xl mx-auto mb-8 bg-white rounded-3xl border border-neutral-100 shadow-sm p-5">
+
+  <div className="flex items-center justify-between mb-3">
+    <h3 className="font-semibold text-neutral-900">Task Completion</h3>
+    <span className="text-sm font-medium text-neutral-500">{completionPercentage}%</span>
   </div>
+
+  <div className="w-full bg-neutral-100 rounded-full h-3 overflow-hidden">
+    <div
+      className="bg-[#A9CB98] h-full rounded-full transition-all duration-500"
+      style={{ width: `${completionPercentage}%` }}
+    />
+  </div>
+
+</div>
 
 
     
