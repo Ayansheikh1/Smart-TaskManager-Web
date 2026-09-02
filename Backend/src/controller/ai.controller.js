@@ -17,16 +17,23 @@ async function generateTasksController(req,res){
         const taskByAi = await generateTasks({goal})
 
         const task = await taskModel.create({
-            ...taskByAi
+
+            ...taskByAi,
+            owner
         });
 
         res.status(201).json({
             message:"Task created successfully",
-            task
+             task:{
+            taskId:task._id,
+            title:task.title
+        }
         })
 
     }catch(error){
-
+            return res.status(400).json({
+        message:error.message
+    })
 
     }
 }
