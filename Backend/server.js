@@ -1,6 +1,10 @@
+require("dotenv").config();
+
 const app = require('./src/app');
 const connectToDB = require('./src/config/database');
-require("dotenv").config();
+
+
+console.log('Key loaded:', process.env.GEMINI_API_KEY ? 'yes' : 'no');
 
 
 connectToDB()
