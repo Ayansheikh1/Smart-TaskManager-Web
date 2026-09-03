@@ -39,3 +39,36 @@ async function generateTasks({goal}){
 
 
 module.exports = { generateTasks }
+
+
+
+
+
+
+
+//Test
+// require("dotenv").config();
+
+// console.log("Key loaded:", Boolean(process.env.GEMINI_API_KEY));
+// console.log("Key length:", process.env.GEMINI_API_KEY?.length);
+
+// const { GoogleGenAI } = require("@google/genai");
+
+// const ai = new GoogleGenAI({
+//     apiKey: process.env.GEMINI_API_KEY
+// });
+
+// async function test() {
+//     try {
+//         const response = await ai.models.generateContent({
+//             model: "gemini-3.6-flash",
+//             contents: "Reply with exactly: Gemini works"
+//         });
+
+//         console.log(response.text);
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
+
+// test();
