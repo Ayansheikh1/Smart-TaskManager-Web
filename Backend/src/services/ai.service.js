@@ -2,7 +2,10 @@ const { GoogleGenAI } = require('@google/genai');
 const { z } = require('zod')
 
 
-const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_GENAI_API_KEY });
+
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
 
 
 
@@ -27,6 +30,7 @@ async function generateTasks({goal}){
            
         }
         })
+        
 
         const task = taskSchema.parse(JSON.parse(response.text));
         return task;
