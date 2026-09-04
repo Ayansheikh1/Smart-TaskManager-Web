@@ -14,6 +14,12 @@ async function generateTasksController(req,res){
         const {goal} = req.body;
         const owner = req.user.id;
 
+        if(!goal){
+            return res.status(400).json({
+            message:"please provide goal"
+        });
+        }
+
         const taskByAi = await generateTasks({goal})
 
         const task = await taskModel.create({
