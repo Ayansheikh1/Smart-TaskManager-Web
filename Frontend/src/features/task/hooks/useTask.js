@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { TaskContext } from "../context/task.context";
-import { createTask, deleteTask, getAllTasks,getTaskById, updateTask } from '../services/taskApi';
+import { createTask, deleteTask, generateTask, getAllTasks,getTaskById, updateTask } from '../services/taskApi';
 
 
 
@@ -106,8 +106,25 @@ export const useTask = ()=>{
     }
 
 
+    const generate = async(goal) =>{
+        setLoading(true);
+        setError(null);
+        try{
+            const data = await generateTask(goal);
+            return  data;
+        }catch(error){
+           setError(
+                error.response?.data?.message || "Failed to generate task"
+            )
+             throw error
+        }finally{
+            setLoading(false)
+        }
+    }
 
 
-    return {create,getTasks,tasks,task,viewTask,loading,totalTask,update,removeTask,error}
+
+
+    return {create,getTasks,tasks,task,viewTask,loading,totalTask,update,removeTask,error,generate}
 
 }
