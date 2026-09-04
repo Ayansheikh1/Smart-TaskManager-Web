@@ -110,7 +110,7 @@ export const useTask = ()=>{
         setLoading(true);
         setError(null);
         try{
-            const data = await generateTask(goal);
+            const data = await generateTask({goal});
             return  data;
         }catch(error){
            setError(
