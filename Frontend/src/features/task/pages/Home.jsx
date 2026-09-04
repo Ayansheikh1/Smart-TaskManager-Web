@@ -4,7 +4,7 @@ import { useTask } from '../hooks/useTask';
 import TaskCard from '../components/TaskCArd';
 import { useNavigate } from 'react-router';
 import ErrorMessage from '../../../../shared/component/ErrorMessage';
-import { LayoutGrid, ListTodo, Clock, CheckCircle2, AlertCircle, CalendarClock, CalendarCheck, CalendarDays } from 'lucide-react'
+import { LayoutGrid, ListTodo, Clock, CheckCircle2, AlertCircle, CalendarClock, CalendarCheck, CalendarDays ,Sparkles} from 'lucide-react'
 import { ToastContext } from '../context/toast.context';
 
 
@@ -238,6 +238,13 @@ completionPercentage = Math.floor((completed/totalTask)*100)
         >
           + Create Task
         </button>
+        <button
+           
+            className="flex items-center gap-2 rounded-full border bg-[#A9CB98] text-neutral-900 font-medium hover:bg-[#9bbf88] px-6 py-3 outline-none"
+          >
+            <Sparkles size={16} />
+            Generate Task
+          </button>
         <button
           onClick={handleGetTasks}
           disabled={loading}
