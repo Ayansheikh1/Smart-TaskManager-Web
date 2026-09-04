@@ -6,6 +6,7 @@ import Protected from './features/auth/components/Protected'
 import TaskDetail from './features/task/pages/TaskDetail'
 import CreateTask from './features/task/pages/CreateTask'
 import EditTask from './features/task/pages/EditTask'
+import GenerateTask from './features/task/pages/GenerateTask'
 
 
 export const router = createBrowserRouter([
@@ -34,5 +35,9 @@ export const router = createBrowserRouter([
     {
         path:"/tasks/:taskId/edit",
         element: <Protected> <EditTask/> </Protected> 
+    },
+    {
+        path:"/tasks/ai/generate-task",
+        element:<Protected> <GenerateTask/> </Protected> 
     }
 ])

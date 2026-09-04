@@ -105,7 +105,7 @@ export const useTask = ()=>{
         }
     }
 
-
+//generate task using ai
     const generate = async(goal) =>{
         setLoading(true);
         setError(null);
