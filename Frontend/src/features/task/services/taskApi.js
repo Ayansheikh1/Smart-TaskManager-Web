@@ -29,3 +29,9 @@ export async function deleteTask(taskId){
    return response.data
 }
 
+
+//generate task with ai
+export async function generateTask(goal){
+   const response = await api.post(`/api/task/generate-tasks`,goal);
+   return response.data
+}
