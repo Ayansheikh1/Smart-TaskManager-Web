@@ -13,7 +13,9 @@ const taskSchema = z.object({
 })
 
 async function generateTasks({ goal }) {
-    const prompt = `Generate a task based on this goal : ${goal}`
+   
+    const today = new Date().toISOString().split("T")[0];
+    const prompt = `Generate a task based on this goal : ${goal} and dueDate must be ${today} or later`
     const response = await ai.models.generateContent({
         model: "gemini-3.6-flash",
         contents: prompt,
@@ -23,7 +25,7 @@ async function generateTasks({ goal }) {
         }
     })
 
-    console.log("Raw Gemini output:", response.text);
+    
 
     const task = taskSchema.parse(JSON.parse(response.text));
     return task;
