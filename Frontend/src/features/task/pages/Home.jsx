@@ -48,6 +48,10 @@ const Home = () => {
     navigate('tasks/create');
   }
 
+  const navigateGenerateTask =()=>{
+    navigate('tasks/ai/generate-task');
+  }
+
   const handleRemovingFilters = () =>{
     setSearch("");
     setStatusFilter("All")
@@ -239,7 +243,7 @@ completionPercentage = Math.floor((completed/totalTask)*100)
           + Create Task
         </button>
         <button
-           
+           onClick={navigateGenerateTask}
             className="flex items-center gap-2 rounded-full border bg-[#A9CB98] text-neutral-900 font-medium hover:bg-[#9bbf88] px-6 py-3 outline-none"
           >
             <Sparkles size={16} />
