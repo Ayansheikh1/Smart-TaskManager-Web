@@ -375,7 +375,7 @@ You will also need a Google Gemini API key for the AI functionality.
 ### Clone the repository
 
 ```bash
-git clone <your-github-repository-url>
+git clone https://github.com/Ayansheikh1/Smart-TaskManager-Web
 cd Taskzee
 ```
 
