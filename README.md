@@ -350,21 +350,11 @@ The Mongoose model also validates the due date before persistence, providing a f
 
 ## 📸 Screenshots
 
-Add screenshots of the main application here.
 
-Recommended screenshots:
+* Task dashboard :
 
-* Login
-* Register
-* Task dashboard
-* Task creation
-* Task editing
-* Task filtering/statistics
-* AI task generation
 
-Example:
 
-```md
 ![Taskzee Dashboard](screenshots/dashboard.png)
 ```
 
