@@ -365,7 +365,7 @@ Recommended screenshots:
 Example:
 
 ```md
-![Taskzee Dashboard](./screenshots/dashboard.png)
+![Taskzee Dashboard](screenshots/dashboard.png)
 ```
 
 ---
