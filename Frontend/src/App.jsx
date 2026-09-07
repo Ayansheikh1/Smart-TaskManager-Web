@@ -7,21 +7,21 @@ import { ToastProvider } from "./features/task/context/toast.context.jsx"
 
 
 function App() {
- 
+
 
   return (
     <ToastProvider>
-    <TaskProvider>
+      <TaskProvider>
 
-   
-    <AuthProvider>
-      <RouterProvider router={router}/>
-    </AuthProvider>
 
-     </TaskProvider>
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
 
-     </ToastProvider>
-      
+      </TaskProvider>
+
+    </ToastProvider>
+
   )
 }
 
