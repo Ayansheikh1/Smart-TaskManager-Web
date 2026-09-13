@@ -46,7 +46,11 @@ async function registerUserController(req,res){
     {expiresIn:"1d"}
    )
 
-   res.cookie("token",token);
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none"
+});
 
    
 
@@ -104,7 +108,21 @@ async function loginUserController(req,res){
     {expiresIn:"1d"}
    )
 
-   res.cookie("token",token);
+   // Store the JWT in a cookie so the browser can automatically send it
+// with authenticated requests to the backend.
+res.cookie("token", token, {
+    // Prevent JavaScript from accessing the JWT.
+    // This helps protect the token against XSS attacks.
+    httpOnly: true,
+
+    // Cookie will only be sent over HTTPS.
+    // Required for the deployed Vercel → Render setup.
+    secure: true,
+
+    // Allow the cookie to be sent in cross-site requests.
+    // Vercel frontend and Render backend are different origins.
+    sameSite: "none"
+});
 
     return res.status(200).json({
         message:"User logged in successfully",
