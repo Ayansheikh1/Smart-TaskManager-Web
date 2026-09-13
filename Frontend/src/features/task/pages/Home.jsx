@@ -1,7 +1,7 @@
 import React, { useEffect, useState,useContext } from 'react'
 import { useAuth } from '../../auth/hooks/useAuth'
 import { useTask } from '../hooks/useTask';
-import TaskCard from '../components/TaskCArd';
+import TaskCard from '../components/TaskCard';
 import { useNavigate } from 'react-router';
 import ErrorMessage from '../../../../shared/component/ErrorMessage';
 import { LayoutGrid, ListTodo, Clock, CheckCircle2, AlertCircle, CalendarClock, CalendarCheck, CalendarDays ,Sparkles} from 'lucide-react'
